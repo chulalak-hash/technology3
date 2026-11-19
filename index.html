@@ -8,7 +8,7 @@
 <script>
 /* ========== ตั้งค่า: วางลิงก์ Web app ของ Apps Script (ม.3) ระหว่างเครื่องหมาย ' ' ==========
    ต้องเป็นรูปแบบ https://script.google.com/macros/s/xxxxxxxx/exec  */
-var FLIP_API = 'https://script.google.com/macros/s/AKfycbxudc1RrhJE2wB67R78j00MtAnOGnOHxOVoVv2IoT6lOw8liE63b6Ds5EvUsdWSJuiw/exec';
+var FLIP_API = 'วางลิงก์ Web app ม.3 ตรงนี้';
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -943,7 +943,8 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){retu
 function ic(n,st){ return '<span class="ms"'+(st?' style="'+st+'"':'')+'>'+n+'</span>'; }
 function loading(on){ $('#loading').classList.toggle('show',on); }
 var _tt; function toast(m,err){ var t=$('#toast'); t.innerHTML=ic(err?'error':'check_circle')+' '+esc(m); t.className='show'+(err?' err':''); clearTimeout(_tt); _tt=setTimeout(function(){t.className='';},3400); }
-function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v);}catch(e){return null;} }
+var NS='m3_'; /* แยกข้อมูลที่จำไว้ของ ม.1 กับ ม.3 ไม่ให้ปนกัน (อยู่โดเมน github.io เดียวกัน) */
+function store(k,v){ k=NS+k; try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v);}catch(e){return null;} }
 function grad(c){ return 'background:linear-gradient(135deg,'+c[0]+','+c[1]+')'; }
 function unitIdx(unitId){ var idx=0; ((S.home||S.dash||{}).units||[]).forEach(function(u,i){ if(String(u.unitId)===String(unitId)) idx=i; }); return idx; }
 function uColor(unitId){ return UNIT_COLORS[unitIdx(unitId)%UNIT_COLORS.length]; }
@@ -1825,7 +1826,7 @@ function gamePage(title,icon,inner){
     '<div class="card panel game-panel"><h3>'+ic(icon)+title+'</h3>'+inner+'</div></div>'+footer();
 }
 function openGame(id){ (({picker:gPicker,circuit:gCircuit,edp:gEdp})[id]||function(){go('');})(); }
-function sKey(k,v){ try{ if(v===undefined) return JSON.parse(localStorage.getItem('tflg_'+k)||'null'); localStorage.setItem('tflg_'+k,JSON.stringify(v)); }catch(e){ return null; } }
+function sKey(k,v){ try{ if(v===undefined) return JSON.parse(localStorage.getItem(NS+'tflg_'+k)||'null'); localStorage.setItem(NS+'tflg_'+k,JSON.stringify(v)); }catch(e){ return null; } }
 function confetti(){
   var box=document.createElement('div'); box.className='confetti';
   for(var i=0;i<60;i++){ var s=document.createElement('i'); s.style.left=Math.random()*100+'%'; s.style.background=UNIT_COLORS[i%6][0]; s.style.animationDelay=(Math.random()*.6)+'s'; s.style.transform='rotate('+(Math.random()*360)+'deg)'; box.appendChild(s); }
