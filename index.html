@@ -751,6 +751,56 @@ body:has(.tlayout) .topbar-in{max-width:1480px}
 .sbar{display:flex;gap:4px;margin-top:6px;border-radius:14px;overflow:hidden}
 .sbar>div{color:#fff;padding:10px 12px;min-width:90px;display:flex;flex-direction:column}.sbar b{font-family:'Kanit';font-size:20px;line-height:1.1}.sbar span{font-size:12px;opacity:.95}
 @media print{ .footer,.crumb,.fab,#ttsBar,.kpis{display:none!important} .cs-hr td{font-size:11px;padding:5px} .cs-hr td:nth-child(4){min-width:0} .tbl-wrap{overflow:visible} .unit-banner{print-color-adjust:exact;-webkit-print-color-adjust:exact} .sbar>div,.cs-hr .ugrp td,.kpa-t{print-color-adjust:exact;-webkit-print-color-adjust:exact} .card{break-inside:auto} tr{break-inside:avoid} }
+/* ===== FLIP Quest 3D ===== */
+body.q-on{overflow:hidden}body.q-on .fab,body.q-on #ttsBar{display:none!important}
+#quest{position:fixed;inset:0;z-index:200;background:#9fd6fa;user-select:none;-webkit-user-select:none;touch-action:none;font-family:'Kanit',sans-serif}
+#qgl,#qov{position:absolute;left:0;top:0}#qov{touch-action:none}
+#quest.q-hurt::after{content:'';position:absolute;inset:0;background:rgba(239,68,68,.28);pointer-events:none}
+.qh-l{position:absolute;left:14px;top:14px;background:rgba(15,23,42,.6);color:#fff;border-radius:16px;padding:8px 12px;min-width:220px;backdrop-filter:blur(4px)}
+.qh-name{display:flex;align-items:center;gap:6px;font-size:15px}.qh-name .ms{font-size:20px}
+.qh-hp{position:relative;height:18px;background:rgba(255,255,255,.2);border-radius:99px;margin-top:6px;overflow:hidden}.qh-hp i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;transition:width .25s}
+.qh-hp span{position:absolute;inset:0;text-align:center;font-size:12px;line-height:18px;text-shadow:0 1px 2px #000}
+.qh-r{position:absolute;right:14px;top:14px;display:flex;gap:8px;align-items:center}
+.qh-r>span{background:rgba(15,23,42,.6);color:#fff;border-radius:99px;padding:7px 14px;font-size:16px}.qh-r button{border:0;width:40px;height:40px;border-radius:50%;background:#fff;color:#0f172a;display:grid;place-items:center}
+.qh-goal{position:absolute;left:50%;top:14px;transform:translateX(-50%);background:rgba(250,204,21,.95);color:#3b2a00;border-radius:16px;padding:6px 16px;display:flex;gap:8px;align-items:center;max-width:44vw}
+.qh-goal:empty{display:none}.qh-goal small{display:block;font-size:12px;opacity:.85}.qh-goal b{font-weight:600;font-size:15px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#qMap{position:absolute;right:14px;bottom:14px;width:150px;height:150px;border-radius:16px;border:3px solid rgba(255,255,255,.85)}
+.qh-touch{display:none}
+@media (pointer:coarse){ .qh-touch{display:block} #qMap{width:110px;height:110px;top:64px;bottom:auto}
+  #qJoy{position:absolute;left:24px;bottom:30px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.6);touch-action:none}
+  #qJoy i{position:absolute;left:40px;top:40px;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.85)}
+  #qJump,#qRun{position:absolute;right:26px;bottom:40px;width:78px;height:78px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:#0f172a;touch-action:none}
+  #qJump .ms{font-size:40px}#qRun{right:116px;bottom:24px;width:58px;height:58px}#qRun.on{background:#facc15}
+  .qh-goal{top:auto;bottom:12px;max-width:46vw;padding:4px 12px}.qh-goal b{font-size:13px}.qh-goal small{font-size:11px}.qh-goal>.ms{display:none}.qh-l{min-width:160px}.qh-r>span{padding:5px 10px;font-size:14px} }
+#qToast{position:absolute;left:50%;top:84px;transform:translate(-50%,-10px);opacity:0;background:rgba(15,23,42,.8);color:#fff;padding:8px 18px;border-radius:99px;transition:.25s;pointer-events:none;font-size:15px}
+#qToast.show{opacity:1;transform:translate(-50%,0)}#qToast.bad{background:rgba(220,38,38,.9)}
+#qModal{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(15,23,42,.45);padding:16px}#qModal.show{display:flex}
+.qm{background:#fff;border-radius:24px;width:min(680px,100%);max-height:92vh;overflow:auto;box-shadow:0 20px 50px rgba(0,0,0,.35);font-family:'Sarabun',sans-serif}
+.qm-h{display:flex;gap:10px;align-items:center;color:#fff;padding:14px 18px;border-radius:24px 24px 0 0;font-family:'Kanit'}.qm-h small{display:block;font-size:12px;opacity:.9}.qm-h b{font-weight:600}.qm-h>span{margin-left:auto;background:rgba(255,255,255,.25);padding:4px 12px;border-radius:99px;white-space:nowrap}
+.qm-q{padding:18px 20px 8px;font-size:19px;font-weight:600;line-height:1.55}.qm-say{border:0;background:#e6f6fd;color:#0b84a5;border-radius:99px;width:34px;height:34px;vertical-align:middle;display:inline-grid;place-items:center}
+.qm-cs{display:grid;gap:10px;padding:8px 20px}.qm-c{display:flex;gap:10px;align-items:center;text-align:left;border:2px solid #e2e8f0;background:#f8fafc;border-radius:16px;padding:12px 14px;font-size:16px;font-family:'Sarabun';transition:.15s}
+.qm-c:hover{border-color:#2dbfac;background:#effcf8}.qm-c b{flex:none;width:30px;height:30px;border-radius:10px;background:#0f172a;color:#fff;display:grid;place-items:center;font-family:'Kanit'}
+.qm-c.ok{border-color:#22c55e;background:#dcfce7}.qm-c.ok b{background:#16a34a}.qm-c.bad{border-color:#ef4444;background:#fee2e2}.qm-c.bad b{background:#dc2626}
+.qm-res{margin:6px 20px;padding:10px 14px;border-radius:14px;font-family:'Kanit'}.qm-res.ok{background:#dcfce7;color:#166534}.qm-res.bad{background:#fee2e2;color:#991b1b}
+.qm-f{display:flex;justify-content:space-between;padding:10px 20px 18px;color:#64748b;font-size:14px}.qm-f span{display:flex;gap:4px;align-items:center}
+.qm-end{text-align:center;padding:26px 22px}.qm-end h3{font-family:'Kanit';font-size:24px;margin:6px 0}.qm-end p{color:#475569}.qm-big{font-size:56px}
+.qm-stars span{font-size:52px;color:#e2e8f0;margin:0 4px}.qm-stars span.on{color:#facc15;text-shadow:0 3px 0 #d97706}
+.qm-unlock{background:#fef9c3;color:#854d0e;border-radius:14px;padding:10px;margin:10px 0;font-family:'Kanit'}
+.qm-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.qm-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.qm-sum div{background:#f1f5f9;border-radius:14px;padding:10px}.qm-sum b{display:block;font-family:'Kanit';font-size:20px}.qm-sum small{color:#64748b}
+.q-hero{display:flex;gap:20px;align-items:center;background:linear-gradient(135deg,#0f3d2e,#2a6b50 55%,#2dbfac);color:#fff;border-radius:28px;padding:28px;margin-bottom:16px;box-shadow:var(--shadow)}
+.q-hero h2{font-family:'Kanit';font-size:40px;margin:2px 0 6px}.q-hero p{opacity:.92;max-width:640px}.q-hero .lbl{opacity:.8;font-family:'Kanit'}
+.q-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.q-chips span{background:rgba(255,255,255,.18);border-radius:99px;padding:5px 12px;display:flex;gap:4px;align-items:center;font-family:'Kanit';font-size:14px}.q-chips .ms{font-size:18px}
+.q-hero-a{margin-left:auto;text-align:center;background:rgba(255,255,255,.14);border-radius:22px;padding:14px 20px}.q-hero-a b{display:block;margin-top:4px;font-size:18px}
+.q-grid{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:16px}.q-cols{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px}
+.q-col{width:42px;height:42px;border-radius:12px;border:3px solid #fff;box-shadow:0 0 0 2px #e2e8f0}.q-col.on{box-shadow:0 0 0 3px #0f172a}
+.q-start{width:100%;justify-content:center;font-size:18px;padding:14px;margin-top:6px}.q-help{margin:0;padding-left:18px;line-height:1.75;font-size:15px}
+.q-tb td,.q-tb th{padding:7px 8px}.q-tb tr.me td{background:#fef9c3}.q-me{background:#effcf8;border-radius:12px;padding:8px 10px;margin-bottom:8px;font-size:14px}
+.note-warn{background:#fff7e6;color:#9a6200;border-radius:12px;padding:8px 10px;font-size:14px;margin-bottom:8px}
+.game-feat{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#0f3d2e,#2dbfac);color:#fff;border-radius:20px;padding:14px 16px;cursor:pointer;box-shadow:var(--shadow);margin-bottom:12px;transition:.15s}
+.game-feat:hover{transform:translateY(-2px)}.game-feat .gf-i{font-size:38px;width:60px;height:60px;border-radius:16px;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
+.game-feat b{font-family:'Kanit';font-size:18px}.game-feat small{display:block;opacity:.9}.game-feat .go{margin-left:auto;background:#facc15;color:#3b2a00;border-radius:99px;padding:6px 14px;font-family:'Kanit';white-space:nowrap}
+@media (max-width:900px){ .q-grid{grid-template-columns:1fr} .q-hero{flex-direction:column;text-align:center} .q-hero-a{margin:0} .q-hero h2{font-size:30px} .qm-sum{grid-template-columns:1fr 1fr} }
 </style>
 </head>
 <body>
@@ -1041,6 +1091,8 @@ function go(h){ if(location.hash.replace(/^#/,'')===h) route(); else location.ha
 window.addEventListener('hashchange',route);
 function route(){
   var h=location.hash.replace(/^#/,'').split('/');
+  if(typeof QG!=='undefined'&&QG&&h[0]!=='quest') questExit(true);
+  if(h[0]==='quest') return openQuest();
   if(h[0]==='login') return renderLogin();
   if(S.user && S.user.role==='teacher' && (h[0]===''||h[0]==='teacher')) return renderTeacher();
   if(h[0]==='skill') return isStudent()? openSkill(h[1]) : go('login');
@@ -1819,13 +1871,438 @@ function itemAnalysis(R,sel,inRoom){
 }
 function saveReport(){ call('saveReportSheet',S.token,S._tables).then(function(url){ toast('บันทึกลงชีต "รายงานผลการวิจัย" แล้ว'); window.open(url,'_blank'); }).catch(function(){}); }
 
+/* ===================== FLIP Quest 3D: เกมวิ่งผจญภัยเก็บฐาน ===================== */
+var QG=null, QD=null;
+var QCOLORS=[['#2a9d6f','ใบไม้'],['#3b82f6','ฟ้า'],['#ef4f7a','ชมพู'],['#f59e0b','ส้ม'],['#8b5cf6','ม่วง'],['#111827','ดำ']];
+var QTHEME=[
+  {name:'เกาะเทคโนโลยีเปลี่ยนโลก',grass:'#5cc46b',side:'#8a5a3b',accent:'#2a9d6f'},
+  {name:'เกาะนักแก้ปัญหา',grass:'#7fd1c4',side:'#6b6f80',accent:'#0ea5a4'},
+  {name:'เกาะนวัตกรมูลค่าสูง',grass:'#f1d38a',side:'#a0723f',accent:'#e8a33d'},
+  {name:'เกาะพิเศษ',grass:'#b8a6f5',side:'#6d5aa8',accent:'#8b5cf6'}];
+function qName(){ return (S.user&&S.user.role==='student')?String(S.user.name||'').replace(/^(เด็กชาย|เด็กหญิง|นาย|นางสาว|ด\.ช\.|ด\.ญ\.)\s*/,'').split(' ')[0]:'นักผจญภัย'; }
+
+function openQuest(){
+  var p = QD ? Promise.resolve(QD) : call('getQuestData').then(function(d){ QD=d; return d; });
+  p.then(function(){ questLobby(); }).catch(function(){});
+}
+function questLobby(){
+  var col=store('quest_color')||QCOLORS[0][0], logged=S.user&&S.user.role==='student';
+  var nL=QD.lessons.length, nQ=Object.keys(QD.questions).reduce(function(a,k){ return a+QD.questions[k].length; },0);
+  $('#app').innerHTML=topbar()+'<div class="page">'+
+    '<div class="crumb"><a onclick="go(\'\')">'+ic('home','font-size:18px')+' หน้าแรก</a>'+ic('chevron_right','font-size:18px')+'<span>FLIP Quest 3D</span></div>'+
+    '<div class="q-hero"><div class="q-hero-t"><div class="lbl">เกมผจญภัย 3 มิติ · เล่นช่วงพักผ่อนคลาย</div><h2>FLIP Quest 3D</h2>'+
+      '<p>วิ่งผจญภัยไปทีละฐานบน '+QD.units.length+' เกาะ (1 เกาะ = 1 หน่วยการเรียนรู้) ตอบคำถามจากบทเรียนให้ผ่านครบ '+nL+' ฐาน หลบบั๊กบอท เก็บพลังงาน สะสมแต้มและดาวรางวัลจากครู</p>'+
+      '<div class="q-chips"><span>'+ic('flag')+nL+' ฐาน</span><span>'+ic('quiz')+nQ+' คำถาม</span><span>'+ic('favorite')+'พลังชีวิต 100</span><span>'+ic('star')+'ดาวสูงสุด '+(nL*3)+' ดวง</span></div></div>'+
+      '<div class="q-hero-a"><div class="q-avatar" id="qAv"></div><b class="kanit" id="qNm">'+esc(qName())+'</b></div></div>'+
+    '<div class="q-grid"><div class="card panel"><h3>'+ic('palette')+'เลือกสีเสื้อตัวละคร</h3><div class="q-cols">'+QCOLORS.map(function(c){ return '<button class="q-col'+(c[0]===col?' on':'')+'" style="background:'+c[0]+'" title="'+c[1]+'" onclick="store(\'quest_color\',\''+c[0]+'\');questLobby()"></button>'; }).join('')+'</div>'+
+      (logged?'':'<div class="note-warn">'+ic('info')+' ยังไม่ได้เข้าสู่ระบบ เล่นได้แต่จะไม่บันทึกแต้มและดาว <a onclick="go(\'login\')">เข้าสู่ระบบ</a></div>')+
+      '<button class="btn btn-pink q-start" onclick="questStart()">'+ic('sports_esports')+' เริ่มผจญภัย</button></div>'+
+      '<div class="card panel"><h3>'+ic('help')+'วิธีเล่น</h3><ul class="q-help">'+
+        '<li><b>เดิน</b> W A S D หรือปุ่มลูกศร · มือถือใช้จอยซ้ายมือ</li><li><b>กระโดด</b> Spacebar · <b>วิ่งเร็ว</b> กด Shift ค้าง</li>'+
+        '<li><b>หมุนกล้อง</b> ลากเมาส์ หรือปัดนิ้วด้านขวาของจอ (Q / E ก็ได้)</li><li>ไปตาม<b>ลำแสงสีเหลือง</b> เพื่อหาฐานถัดไป เดินเข้าฐานแล้วตอบคำถาม 3 ข้อ</li>'+
+        '<li>ตอบถูก +100 แต้ม (ตอบเร็วได้โบนัส) · ตอบผิด −20 พลังชีวิต</li><li>ระวัง<b>บั๊กบอท</b>สีม่วง ชนแล้วเสียพลัง แต่<b>กระโดดเหยียบหัว</b>ได้ +20 แต้ม</li>'+
+        '<li>เก็บ<b>ก้อนพลังงาน</b>สีทอง +10 แต้ม · <b>กล่องหัวใจ</b> +25 พลังชีวิต · ระวังตกน้ำ</li><li>ผ่านครบทุกฐานในเกาะ สะพานไปเกาะถัดไปจะเปิด</li></ul></div>'+
+      '<div class="card panel"><h3>'+ic('emoji_events')+'ตารางผู้นำ (ดาวสะสม)</h3><div id="qBoard"><div class="muted small">'+(S.token?'กำลังโหลด...':'เข้าสู่ระบบเพื่อดูตารางผู้นำ')+'</div></div></div></div></div>'+footer();
+  $('#qAv').innerHTML=questAvatarSvg(col);
+  if(S.token) api('getQuestBoard',S.token).then(questBoardHtml).catch(function(){});
+}
+function questAvatarSvg(c){
+  return '<svg viewBox="0 0 80 110" width="96" height="132"><rect x="22" y="4" width="36" height="34" rx="4" fill="#f5c9a0"/><rect x="22" y="4" width="36" height="9" rx="3" fill="#3b2a20"/>'+
+    '<rect x="30" y="20" width="5" height="6" fill="#222"/><rect x="45" y="20" width="5" height="6" fill="#222"/><rect x="34" y="30" width="12" height="3" rx="1.5" fill="#c0563d"/>'+
+    '<rect x="18" y="40" width="44" height="36" rx="3" fill="'+c+'"/><rect x="6" y="40" width="11" height="34" rx="3" fill="#f5c9a0"/><rect x="63" y="40" width="11" height="34" rx="3" fill="#f5c9a0"/>'+
+    '<rect x="20" y="77" width="18" height="30" rx="3" fill="#334155"/><rect x="42" y="77" width="18" height="30" rx="3" fill="#334155"/></svg>';
+}
+function questBoardHtml(B){
+  var el=$('#qBoard'); if(!el||!B) return;
+  el.innerHTML=(B.me?'<div class="q-me">'+ic('person')+' ของฉัน: <b>'+B.me.stars+'</b> ดาว · '+B.me.score+' แต้มสะสม · สูงสุด '+B.me.best+(B.rank?' · อันดับ '+B.rank+' ของห้อง':'')+'</div>':'')+
+    (B.top.length?'<table class="tbl q-tb"><thead><tr><th>#</th><th>ชื่อ</th><th>ดาว</th><th>แต้มสะสม</th></tr></thead><tbody>'+B.top.map(function(r){
+      return '<tr'+(r.me?' class="me"':'')+'><td>'+(r.rank<=3?['🥇','🥈','🥉'][r.rank-1]:r.rank)+'</td><td>'+esc(r.name)+(S.user&&S.user.role==='teacher'?' <span class="small muted">'+esc(r.room)+'</span>':'')+'</td><td>⭐ '+r.stars+'</td><td>'+r.score+'</td></tr>'; }).join('')+'</tbody></table>':'<div class="muted small">ยังไม่มีใครเล่น เป็นคนแรกเลย!</div>');
+}
+
+/* ---------- คณิตศาสตร์ 3 มิติ ---------- */
+var M4={
+  I:function(){ return [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]; },
+  mul:function(a,b){ var o=new Array(16); for(var c=0;c<4;c++) for(var r=0;r<4;r++){ o[c*4+r]=a[r]*b[c*4]+a[4+r]*b[c*4+1]+a[8+r]*b[c*4+2]+a[12+r]*b[c*4+3]; } return o; },
+  T:function(x,y,z){ return [1,0,0,0, 0,1,0,0, 0,0,1,0, x,y,z,1]; },
+  S:function(x,y,z){ return [x,0,0,0, 0,y,0,0, 0,0,z,0, 0,0,0,1]; },
+  Ry:function(a){ var c=Math.cos(a),s=Math.sin(a); return [c,0,-s,0, 0,1,0,0, s,0,c,0, 0,0,0,1]; },
+  Rx:function(a){ var c=Math.cos(a),s=Math.sin(a); return [1,0,0,0, 0,c,s,0, 0,-s,c,0, 0,0,0,1]; },
+  Rz:function(a){ var c=Math.cos(a),s=Math.sin(a); return [c,s,0,0, -s,c,0,0, 0,0,1,0, 0,0,0,1]; },
+  chain:function(){ var m=arguments[0]; for(var i=1;i<arguments.length;i++) m=M4.mul(m,arguments[i]); return m; },
+  persp:function(f,a,n,fa){ var t=1/Math.tan(f/2); return [t/a,0,0,0, 0,t,0,0, 0,0,(fa+n)/(n-fa),-1, 0,0,2*fa*n/(n-fa),0]; },
+  look:function(e,c,u){ var z=qN([e[0]-c[0],e[1]-c[1],e[2]-c[2]]), x=qN(qX(u,z)), y=qX(z,x);
+    return [x[0],y[0],z[0],0, x[1],y[1],z[1],0, x[2],y[2],z[2],0, -qD(x,e),-qD(y,e),-qD(z,e),1]; }
+};
+function qN(v){ var l=Math.hypot(v[0],v[1],v[2])||1; return [v[0]/l,v[1]/l,v[2]/l]; }
+function qX(a,b){ return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
+function qD(a,b){ return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]; }
+function qHex(h){ h=String(h).replace('#',''); return [parseInt(h.substr(0,2),16)/255,parseInt(h.substr(2,2),16)/255,parseInt(h.substr(4,2),16)/255]; }
+function qRng(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+
+/* ---------- ตัวสร้างรูปทรง ---------- */
+var QFACES=[[[1,0,0],[[.5,-.5,-.5],[.5,.5,-.5],[.5,.5,.5],[.5,-.5,.5]]],[[-1,0,0],[[-.5,-.5,.5],[-.5,.5,.5],[-.5,.5,-.5],[-.5,-.5,-.5]]],
+  [[0,1,0],[[-.5,.5,-.5],[-.5,.5,.5],[.5,.5,.5],[.5,.5,-.5]]],[[0,-1,0],[[-.5,-.5,.5],[-.5,-.5,-.5],[.5,-.5,-.5],[.5,-.5,.5]]],
+  [[0,0,1],[[.5,-.5,.5],[.5,.5,.5],[-.5,.5,.5],[-.5,-.5,.5]]],[[0,0,-1],[[-.5,-.5,-.5],[-.5,.5,-.5],[.5,.5,-.5],[.5,-.5,-.5]]]];
+function QMesh(){ this.d=[]; }
+QMesh.prototype.tri=function(a,b,c,n,col){ var d=this.d; [a,b,c].forEach(function(p){ d.push(p[0],p[1],p[2],n[0],n[1],n[2],col[0],col[1],col[2]); }); };
+QMesh.prototype.box=function(x,y,z,sx,sy,sz,col,ry){ // y = ฐานล่างของกล่อง
+  var c=typeof col==='string'?qHex(col):col, cs=Math.cos(ry||0), sn=Math.sin(ry||0), self=this;
+  QFACES.forEach(function(f){
+    var n=[f[0][0]*cs+f[0][2]*sn,f[0][1],-f[0][0]*sn+f[0][2]*cs], sh=f[0][1]>0?1.06:f[0][1]<0?.7:1;
+    var P=f[1].map(function(v){ var px=v[0]*sx, pz=v[2]*sz; return [x+px*cs+pz*sn, y+(v[1]+.5)*sy, z-px*sn+pz*cs]; });
+    var cc=[c[0]*sh,c[1]*sh,c[2]*sh]; self.tri(P[0],P[1],P[2],n,cc); self.tri(P[0],P[2],P[3],n,cc);
+  });
+};
+QMesh.prototype.prism=function(cx,cz,r,y0,y1,colTop,colSide,sides){
+  var n=sides||28, ct=qHex(colTop), cs=qHex(colSide);
+  for(var i=0;i<n;i++){ var a0=i/n*Math.PI*2, a1=(i+1)/n*Math.PI*2, am=(a0+a1)/2;
+    var p0=[cx+Math.cos(a0)*r,cz+Math.sin(a0)*r], p1=[cx+Math.cos(a1)*r,cz+Math.sin(a1)*r], nn=[Math.cos(am),0,Math.sin(am)];
+    this.tri([p0[0],y1,p0[1]],[p1[0],y1,p1[1]],[p1[0],y0,p1[1]],nn,cs); this.tri([p0[0],y1,p0[1]],[p1[0],y0,p1[1]],[p0[0],y0,p0[1]],nn,cs);
+    this.tri([cx,y1,cz],[p1[0],y1,p1[1]],[p0[0],y1,p0[1]],[0,1,0],ct); }
+};
+
+/* ---------- เริ่มเกม ---------- */
+function questStart(){
+  var wrap=document.createElement('div'); wrap.id='quest';
+  wrap.innerHTML='<canvas id="qgl"></canvas><canvas id="qov"></canvas>'+
+    '<div class="qh-l"><div class="qh-name">'+ic('person')+'<b>'+esc(qName())+'</b></div><div class="qh-hp"><i id="qHp"></i><span id="qHpT">100</span></div></div>'+
+    '<div class="qh-r"><span>⭐ <b id="qSt">0</b></span><span>🪙 <b id="qSc">0</b></span><span>⏱ <b id="qTm">0:00</b></span><button onclick="questPause()" title="หยุดชั่วคราว">'+ic('pause')+'</button></div>'+
+    '<div class="qh-goal" id="qGoal"></div><canvas id="qMap" width="300" height="300"></canvas>'+
+    '<div class="qh-touch"><div id="qJoy"><i></i></div><button id="qJump">'+ic('arrow_upward')+'</button><button id="qRun">'+ic('directions_run')+'</button></div>'+
+    '<div id="qModal"></div><div id="qToast"></div>';
+  document.body.appendChild(wrap); document.body.classList.add('q-on');
+  var gl=$('#qgl').getContext('webgl',{antialias:true})||$('#qgl').getContext('experimental-webgl');
+  if(!gl){ wrap.remove(); document.body.classList.remove('q-on'); toast('เครื่องนี้ไม่รองรับกราฟิก 3 มิติ (WebGL) ลองเปิดด้วย Chrome รุ่นใหม่',true); return; }
+  QG={ gl:gl, wrap:wrap, ov:$('#qov').getContext('2d'), map:$('#qMap').getContext('2d'), keys:{}, t:0, last:0, run:true, modal:false,
+    yaw:0, pitch:.42, dist:10, score:0, stars:0, hp:100, time:0, inv:0, color:store('quest_color')||QCOLORS[0][0],
+    p:{x:0,y:0,z:0,vy:0,face:Math.PI,spd:0,ground:true,fall:0}, joy:{x:0,y:0}, sprint:false, done:false, saved:false, beep:null };
+  questWorld(); questGL(); questInput(); questResize();
+  window.addEventListener('resize',questResize);
+  questToastMsg('ไปที่ลำแสงสีเหลือง เพื่อเข้าฐานที่ 1');
+  QG.last=performance.now(); requestAnimationFrame(questLoop);
+}
+
+function questWorld(){
+  var R=qRng(9), lessons=QD.lessons, units=QD.units, W=QG;
+  W.isl=[]; W.bases=[]; W.coins=[]; W.hearts=[]; W.bots=[]; W.cols=[]; W.decor=[];
+  var z=0;
+  units.forEach(function(u,i){
+    var ls=lessons.filter(function(l){ return String(l.unitId)===String(u.unitId); }); if(!ls.length) return;
+    var r=Math.max(24,20+ls.length*2), th=QTHEME[Math.min(W.isl.length,3)];
+    if(W.isl.length) z-= (W.isl[W.isl.length-1].r + r + 18);
+    var I={i:W.isl.length,unit:u,cx:0,cz:z,r:r,th:th,lessons:ls,open:W.isl.length===0}; W.isl.push(I);
+    ls.forEach(function(l,k){ var a=Math.PI/2+(k+.5)/ls.length*Math.PI*2, br=r*.62;
+      W.bases.push({isl:I.i,lesson:l,no:W.bases.length+1,x:I.cx+Math.cos(a)*br,z:I.cz+Math.sin(a)*br,state:'lock',stars:0}); });
+  });
+  W.bases[0].state='active';
+  // สะพาน
+  W.bridges=[]; for(var i=0;i<W.isl.length-1;i++){ var A=W.isl[i],B=W.isl[i+1]; W.bridges.push({from:i,x0:-2.6,x1:2.6,z0:B.cz+B.r-1.5,z1:A.cz-A.r+1.5}); }
+  // ของตกแต่ง + จุดชน
+  W.isl.forEach(function(I){
+    var free=function(x,z,m){ if(Math.hypot(x-I.cx,z-I.cz)>I.r-3) return false;
+      if(Math.abs(x)<4 && (z>I.cz+I.r-9 || z<I.cz-I.r+9)) return false;
+      if(Math.hypot(x-I.cx,z-(I.cz+I.r-6))<6) return false;
+      for(var b=0;b<W.bases.length;b++) if(Math.hypot(W.bases[b].x-x,W.bases[b].z-z)<5.5) return false;
+      for(var d=0;d<W.cols.length;d++) if(Math.hypot(W.cols[d].x-x,W.cols[d].z-z)<W.cols[d].r+m) return false; return true; };
+    var spot=function(m){ for(var t=0;t<80;t++){ var a=R()*Math.PI*2, d=Math.sqrt(R())*(I.r-3); var x=I.cx+Math.cos(a)*d, zz=I.cz+Math.sin(a)*d; if(free(x,zz,m)) return [x,zz]; } return null; };
+    var nT=Math.round(I.r*.7), k, s;
+    for(k=0;k<nT;k++){ s=spot(2.5); if(!s) break; W.decor.push({t:I.i===2&&k%3===0?'pillar':I.i===1&&k%3===0?'gear':I.i===0&&k%4===0?'tower':'tree',x:s[0],z:s[1],h:.8+R()*.6,ry:R()*3}); W.cols.push({x:s[0],z:s[1],r:1.1}); }
+    if(I.i===0) for(k=0;k<3;k++){ s=spot(3); if(s){ W.decor.push({t:'car',x:s[0],z:s[1],ry:R()*6,c:['#ef4444','#3b82f6','#f59e0b'][k]}); W.cols.push({x:s[0],z:s[1],r:1.6}); } }
+    if(I.i===1) for(k=0;k<3;k++){ s=spot(3); if(s){ W.decor.push({t:'bench',x:s[0],z:s[1],ry:R()*6}); W.cols.push({x:s[0],z:s[1],r:1.5}); } }
+    if(I.i===2) for(k=0;k<3;k++){ s=spot(3); if(s){ W.decor.push({t:'shop',x:s[0],z:s[1],ry:R()*6,c:['#ef4f7a','#8b5cf6','#0ea5a4'][k]}); W.cols.push({x:s[0],z:s[1],r:1.8}); } }
+    for(k=0;k<12;k++){ s=spot(1); if(s) W.coins.push({x:s[0],z:s[1],got:false,ph:R()*6}); }
+    for(k=0;k<2;k++){ s=spot(1); if(s) W.hearts.push({x:s[0],z:s[1],got:false}); }
+    var nb=2+I.i; for(k=0;k<nb;k++){ s=spot(1); if(s) W.bots.push({isl:I.i,x:s[0],z:s[1],hx:s[0],hz:s[1],a:R()*6,stun:0,ph:R()*6}); }
+  });
+  var I0=W.isl[0]; W.p.x=0; W.p.z=I0.cz+I0.r-4; W.p.face=Math.PI; W.safe={x:W.p.x,z:W.p.z};
+}
+
+function questGL(){
+  var gl=QG.gl;
+  var vs='attribute vec3 p;attribute vec3 n;attribute vec3 c;uniform mat4 uVP;uniform mat4 uM;uniform vec3 uTint;uniform float uUse;uniform float uEm;uniform vec3 uEye;varying vec3 vC;varying float vF;'+
+    'void main(){vec4 w=uM*vec4(p,1.);gl_Position=uVP*w;vec3 N=normalize((uM*vec4(n,0.)).xyz);float l=.58+.42*max(dot(N,normalize(vec3(.45,.85,.3))),0.)+.1*max(dot(N,vec3(-.5,.3,-.6)),0.);'+
+    'vec3 col=mix(c,uTint,uUse);vC=col*min(l+uEm,1.6);float d=length(w.xyz-uEye);vF=clamp((d-70.)/110.,0.,1.);}';
+  var fs='precision mediump float;uniform vec3 uFog;varying vec3 vC;varying float vF;void main(){gl_FragColor=vec4(mix(vC,uFog,vF),1.);}';
+  var sh=function(t,s){ var o=gl.createShader(t); gl.shaderSource(o,s); gl.compileShader(o); if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; };
+  var pr=gl.createProgram(); gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs)); gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs)); gl.linkProgram(pr); gl.useProgram(pr);
+  var L={}; ['p','n','c'].forEach(function(k){ L[k]=gl.getAttribLocation(pr,k); }); ['uVP','uM','uTint','uUse','uEm','uEye','uFog'].forEach(function(k){ L[k]=gl.getUniformLocation(pr,k); });
+  QG.L=L; gl.enable(gl.DEPTH_TEST); 
+  // ฉากคงที่
+  var m=new QMesh(), W=QG;
+  m.box(0,-3,(W.isl[W.isl.length-1].cz)/2,900,1.8,900,'#4aa8e0');
+  W.isl.forEach(function(I){ m.prism(I.cx,I.cz,I.r+1.6,-1.6,-.9,'#f3e2b3','#e7cf94',36); m.prism(I.cx,I.cz,I.r,-4,-.02,I.th.grass,I.th.side,36);
+    for(var k=0;k<14;k++){ var a=k/14*Math.PI*2+.2; m.box(I.cx+Math.cos(a)*(I.r+1.2),-1.3,I.cz+Math.sin(a)*(I.r+1.2),1.4,.9,1.1,'#9ca3af',a); } });
+  W.bridges.forEach(function(B){ var len=B.z1-B.z0+3, mz=(B.z0+B.z1)/2; m.box(0,-.45,mz,5.4,.45,len,'#a0703f');
+    for(var z=B.z0-1;z<B.z1+1;z+=1.6) m.box(0,-.02,z,5.6,.06,.25,'#7c5530');
+    for(z=B.z0;z<=B.z1;z+=4){ m.box(-2.9,-.4,z,.3,1.6,.3,'#7c5530'); m.box(2.9,-.4,z,.3,1.6,.3,'#7c5530'); }
+    m.box(-2.9,.9,mz,.15,.15,len,'#c58c50'); m.box(2.9,.9,mz,.15,.15,len,'#c58c50'); });
+  W.decor.forEach(function(d){ var x=d.x,z=d.z,h=d.h||1;
+    if(d.t==='tree'){ m.box(x,0,z,.6,2.2*h,.6,'#8b5a2b'); m.box(x,2*h,z,2.4,1.6,2.4,'#2f9e57',d.ry); m.box(x,3.4*h,z,1.6,1.2,1.6,'#3cb96a',d.ry); }
+    else if(d.t==='tower'){ m.box(x,0,z,.5,7,.5,'#9ca3af'); m.box(x,2.5,z,1.4,.2,.2,'#6b7280',d.ry); m.box(x,4.5,z,1.2,.2,.2,'#6b7280',d.ry+1.5); m.box(x,6.6,z,.9,.6,.3,'#e5e7eb',d.ry); m.box(x,7,z,.3,.5,.3,'#ef4444'); }
+    else if(d.t==='gear'){ m.box(x,0,z,2.2,1,2.2,'#94a3b8',d.ry); m.box(x,0,z,2.2,1,2.2,'#94a3b8',d.ry+.78); m.box(x,1,z,1.2,.5,1.2,'#f59e0b',d.ry); }
+    else if(d.t==='pillar'){ m.box(x,0,z,1.4,.4,1.4,'#e5e7eb'); m.box(x,.4,z,.9,2.6,.9,'#f8fafc'); m.box(x,3,z,1.1,.5,1.1,'#facc15',d.ry); m.box(x,3.5,z,.5,.6,.5,'#fde047',d.ry); }
+    else if(d.t==='car'){ m.box(x,.35,z,3.4,.9,1.7,d.c,d.ry); m.box(x,1.25,z,1.9,.7,1.5,'#dbeafe',d.ry);
+      [[-1.1,-.85],[1.1,-.85],[-1.1,.85],[1.1,.85]].forEach(function(w){ var c=Math.cos(d.ry),s=Math.sin(d.ry); m.box(x+w[0]*c+w[1]*s,0,z-w[0]*s+w[1]*c,.7,.7,.3,'#1f2937',d.ry); }); }
+    else if(d.t==='bench'){ m.box(x,0,z,3,1,1.4,'#b45309',d.ry); m.box(x,1,z,.8,.5,.6,'#64748b',d.ry); m.box(x+.6,1,z,.4,.9,.4,'#ef4444',d.ry); }
+    else if(d.t==='shop'){ m.box(x,0,z,3,1.2,2,'#fef3c7',d.ry); m.box(x,2.4,z,3.4,.3,2.4,d.c,d.ry); m.box(x-1.3*Math.cos(d.ry),1.2,z+1.3*Math.sin(d.ry),.2,1.2,.2,'#78350f'); m.box(x+1.3*Math.cos(d.ry),1.2,z-1.3*Math.sin(d.ry),.2,1.2,.2,'#78350f'); }
+  });
+  var buf=function(arr){ var b=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,b); gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(arr),gl.STATIC_DRAW); return {b:b,n:arr.length/9}; };
+  QG.world=buf(m.d);
+  var cube=new QMesh(); cube.box(0,-.5,0,1,1,1,[1,1,1]); QG.cube=buf(cube.d);
+  var cyl=new QMesh(); cyl.prism(0,0,1,-.5,.5,'#ffffff','#ffffff',20); QG.cyl=buf(cyl.d);
+}
+function qBind(o){ var gl=QG.gl,L=QG.L; gl.bindBuffer(gl.ARRAY_BUFFER,o.b);
+  gl.enableVertexAttribArray(L.p); gl.vertexAttribPointer(L.p,3,gl.FLOAT,false,36,0);
+  gl.enableVertexAttribArray(L.n); gl.vertexAttribPointer(L.n,3,gl.FLOAT,false,36,12);
+  gl.enableVertexAttribArray(L.c); gl.vertexAttribPointer(L.c,3,gl.FLOAT,false,36,24); }
+function qDraw(o,M,col,em){ var gl=QG.gl,L=QG.L; gl.uniformMatrix4fv(L.uM,false,new Float32Array(M)); gl.uniform3fv(L.uTint,col?(typeof col==='string'?qHex(col):col):[1,1,1]); gl.uniform1f(L.uUse,col?1:0); gl.uniform1f(L.uEm,em||0); gl.drawArrays(gl.TRIANGLES,0,o.n); }
+function qBox(x,y,z,sx,sy,sz,col,ry,em,extra){ var M=M4.chain(M4.T(x,y,z),M4.Ry(ry||0)); if(extra) M=M4.mul(M,extra); qDraw(QG.cube,M4.mul(M,M4.S(sx,sy,sz)),col,em); }
+
+/* ---------- ควบคุม ---------- */
+function questInput(){
+  var W=QG, cv=$('#qov');
+  W.onKey=function(e){ var d=e.type==='keydown', code=String(e.code||''), dg=/^(Digit|Numpad)([1-4])$/.exec(code);
+    if(W.modal&&d&&dg){ var b=document.querySelectorAll('#qModal .qm-c')[+dg[2]-1]; if(b) b.click(); return; }
+    var k=code.indexOf('Shift')===0?'shift':code==='Space'?' ':code?code.replace(/^Key/,'').toLowerCase():String(e.key).toLowerCase(); W.keys[k]=d; if(k===' '||k.indexOf('arrow')===0) e.preventDefault(); if(d&&k===' ') questJump(); if(d&&k==='escape') questPause(); };
+  document.addEventListener('keydown',W.onKey); document.addEventListener('keyup',W.onKey);
+  var drag=null;
+  cv.addEventListener('pointerdown',function(e){ drag={x:e.clientX,y:e.clientY,id:e.pointerId}; try{cv.setPointerCapture(e.pointerId);}catch(x){} });
+  cv.addEventListener('pointermove',function(e){ if(!drag||drag.id!==e.pointerId) return; W.yaw-=(e.clientX-drag.x)*.006; W.pitch=Math.max(.12,Math.min(1.1,W.pitch+(e.clientY-drag.y)*.004)); drag.x=e.clientX; drag.y=e.clientY; });
+  cv.addEventListener('pointerup',function(){ drag=null; }); cv.addEventListener('pointercancel',function(){ drag=null; });
+  cv.addEventListener('wheel',function(e){ W.dist=Math.max(6,Math.min(18,W.dist+e.deltaY*.01)); e.preventDefault(); },{passive:false});
+  var joy=$('#qJoy'), knob=joy.querySelector('i'), jid=null, jc=null;
+  joy.addEventListener('pointerdown',function(e){ jid=e.pointerId; var r=joy.getBoundingClientRect(); jc={x:r.left+r.width/2,y:r.top+r.height/2}; try{joy.setPointerCapture(e.pointerId);}catch(x){} mv(e); e.stopPropagation(); });
+  var mv=function(e){ if(e.pointerId!==jid) return; var dx=e.clientX-jc.x, dy=e.clientY-jc.y, l=Math.hypot(dx,dy), m=50; if(l>m){ dx*=m/l; dy*=m/l; } W.joy={x:dx/m,y:dy/m}; knob.style.transform='translate('+dx+'px,'+dy+'px)'; };
+  joy.addEventListener('pointermove',mv);
+  var up=function(e){ if(e.pointerId!==jid) return; jid=null; W.joy={x:0,y:0}; knob.style.transform=''; }; joy.addEventListener('pointerup',up); joy.addEventListener('pointercancel',up);
+  $('#qJump').addEventListener('pointerdown',function(e){ e.preventDefault(); questJump(); });
+  $('#qRun').addEventListener('pointerdown',function(e){ e.preventDefault(); W.sprint=!W.sprint; this.classList.toggle('on',W.sprint); });
+}
+function questJump(){ var p=QG.p; if(p.ground&&!QG.modal&&p.fall<=0){ p.vy=9.5; p.ground=false; qSnd('jump'); } }
+function questResize(){ if(!QG) return; var d=Math.min(window.devicePixelRatio||1,1.5), w=innerWidth, h=innerHeight;
+  [$('#qgl'),$('#qov')].forEach(function(c){ c.width=w*d; c.height=h*d; c.style.width=w+'px'; c.style.height=h+'px'; }); QG.dpr=d; QG.gl.viewport(0,0,w*d,h*d); }
+
+/* ---------- เสียงเอฟเฟกต์ ---------- */
+function qSnd(t){ try{ var A=QG.ac=QG.ac||new (window.AudioContext||window.webkitAudioContext)(), o=A.createOscillator(), g=A.createGain(), n=A.currentTime;
+  var f={coin:[880,1320,.12],jump:[330,520,.12],hit:[200,90,.25],ok:[660,990,.25],bad:[260,150,.35],base:[520,1040,.4],splash:[300,80,.4]}[t]||[440,440,.1];
+  o.type=t==='hit'||t==='bad'?'square':'sine'; o.frequency.setValueAtTime(f[0],n); o.frequency.exponentialRampToValueAtTime(f[1],n+f[2]);
+  g.gain.setValueAtTime(.08,n); g.gain.exponentialRampToValueAtTime(.001,n+f[2]); o.connect(g); g.connect(A.destination); o.start(n); o.stop(n+f[2]+.02); }catch(e){} }
+
+/* ---------- พื้นที่เดินได้ ---------- */
+function qLand(x,z){ var W=QG; for(var i=0;i<W.isl.length;i++){ var I=W.isl[i]; if(Math.hypot(x-I.cx,z-I.cz)<I.r+.3) return {isl:i}; }
+  for(var b=0;b<W.bridges.length;b++){ var B=W.bridges[b]; if(x>B.x0&&x<B.x1&&z>B.z0-2&&z<B.z1+2) return {bridge:b}; } return null; }
+function qBlocked(x,z){ var W=QG; for(var b=0;b<W.bridges.length;b++){ var B=W.bridges[b]; if(!W.isl[B.from+1].open && x>B.x0-1&&x<B.x1+1&&z>B.z0-2&&z<B.z1+.8) return true; } return false; }
+
+/* ---------- วงรอบหลัก ---------- */
+function questLoop(now){
+  if(!QG||!QG.run) return;
+  var dt=Math.min(.05,(now-QG.last)/1000); QG.last=now;
+  if(!QG.modal&&!QG.done) questUpdate(dt);
+  questRender(); requestAnimationFrame(questLoop);
+}
+function questUpdate(dt){
+  var W=QG, p=W.p, K=W.keys; W.t+=dt; W.time+=dt; if(W.inv>0) W.inv-=dt;
+  W.yaw+=((K.q?1:0)-(K.e?1:0))*dt*2;
+  var fx=(K.d||K.arrowright?1:0)-(K.a||K.arrowleft?1:0)+W.joy.x, fz=(K.s||K.arrowdown?1:0)-(K.w||K.arrowup?1:0)+W.joy.y, l=Math.hypot(fx,fz);
+  var sp=(K.shift||W.sprint)?9:6, mx=0, mz=0;
+  if(l>.1 && p.fall<=0){ fx/=Math.max(1,l); fz/=Math.max(1,l); var c=Math.cos(W.yaw), s=Math.sin(W.yaw);
+    mx=(fx*c+fz*s)*sp; mz=(-fx*s+fz*c)*sp; var tf=Math.atan2(mx,mz), d=tf-p.face; while(d>Math.PI) d-=Math.PI*2; while(d<-Math.PI) d+=Math.PI*2; p.face+=d*Math.min(1,dt*12); }
+  p.spd=Math.hypot(mx,mz);
+  var nx=p.x+mx*dt, nz=p.z+mz*dt;
+  if(!qBlocked(nx,nz)){ p.x=nx; p.z=nz; } else if(!W._gateMsg||W.t-W._gateMsg>3){ W._gateMsg=W.t; questToastMsg('สะพานยังปิดอยู่ ผ่านฐานบนเกาะนี้ให้ครบก่อนนะ'); }
+  W.cols.forEach(function(o){ var dx=p.x-o.x, dz=p.z-o.z, d=Math.hypot(dx,dz); if(d<o.r+.5&&d>0){ p.x=o.x+dx/d*(o.r+.5); p.z=o.z+dz/d*(o.r+.5); } });
+  // แรงโน้มถ่วงและการตกน้ำ
+  p.vy-=24*dt; p.y+=p.vy*dt;
+  var land=qLand(p.x,p.z);
+  if(p.fall>0){ p.fall-=dt; if(p.fall<=0){ p.x=W.safe.x; p.z=W.safe.z; p.y=2; p.vy=0; } }
+  else if(p.y<=0){ if(land){ p.y=0; p.vy=0; p.ground=true; } else { p.ground=false; if(p.y<-.6){ p.fall=1.1; qSnd('splash'); questHurt(15,'ตกน้ำ! −15 พลังชีวิต'); } } }
+  else p.ground=false;
+  if(land&&p.ground&&p.fall<=0&&(!W._safeT||W.t-W._safeT>.5)){ W._safeT=W.t; W.safe={x:p.x,z:p.z}; }
+  // ของรางวัล
+  W.coins.forEach(function(c){ if(!c.got&&Math.hypot(c.x-p.x,c.z-p.z)<1.3&&p.y<2.5){ c.got=true; W.score+=10; qSnd('coin'); } });
+  W.hearts.forEach(function(h){ if(!h.got&&Math.hypot(h.x-p.x,h.z-p.z)<1.3&&p.y<2.5){ h.got=true; W.hp=Math.min(100,W.hp+25); qSnd('ok'); questToastMsg('+25 พลังชีวิต ❤'); } });
+  // บั๊กบอท
+  var pi=land&&land.isl!=null?land.isl:-1;
+  W.bots.forEach(function(b){ if(b.stun>0){ b.stun-=dt; return; } b.ph+=dt*6;
+    var I=W.isl[b.isl], dx=p.x-b.x, dz=p.z-b.z, d=Math.hypot(dx,dz), chase=pi===b.isl&&d<11&&p.fall<=0;
+    if(chase){ b.a=Math.atan2(dx,dz); var v=3.4+b.isl*.4; b.x+=dx/d*v*dt; b.z+=dz/d*v*dt; }
+    else { if(Math.random()<dt*.5) b.a+=(Math.random()-.5)*2.4; b.x+=Math.sin(b.a)*1.6*dt; b.z+=Math.cos(b.a)*1.6*dt; if(Math.hypot(b.x-b.hx,b.z-b.hz)>7) b.a=Math.atan2(b.hx-b.x,b.hz-b.z); }
+    var r=Math.hypot(b.x-I.cx,b.z-I.cz); if(r>I.r-2){ b.x=I.cx+(b.x-I.cx)*(I.r-2)/r; b.z=I.cz+(b.z-I.cz)*(I.r-2)/r; }
+    W.bases.forEach(function(B){ var ex=b.x-B.x, ez=b.z-B.z, e=Math.hypot(ex,ez); if(e<3.6&&e>0){ b.x=B.x+ex/e*3.6; b.z=B.z+ez/e*3.6; } });
+    if(d<1.3){ if(p.vy<0&&p.y>.5){ b.stun=6; p.vy=8; W.score+=20; qSnd('coin'); questToastMsg('เหยียบบั๊กบอท! +20 แต้ม'); }
+      else if(p.y<1.2&&W.inv<=0){ W.inv=1.5; p.x+=dx/(d||1)*2.5; p.z+=dz/(d||1)*2.5; p.vy=5; qSnd('hit'); questHurt(10,'โดนบั๊กบอท! −10 พลังชีวิต'); } } });
+  // ฐาน
+  W.bases.forEach(function(B){ if(B.state==='active'&&Math.hypot(B.x-p.x,B.z-p.z)<2.6&&p.y<1&&(!W._baseCd||W.t>W._baseCd)) questBase(B); });
+  // กล้อง
+  var tx=p.x, ty=p.y+1.6, tz=p.z, cd=W.dist;
+  W.cam=[tx+Math.sin(W.yaw)*Math.cos(W.pitch)*cd, Math.max(.8,ty+Math.sin(W.pitch)*cd), tz+Math.cos(W.yaw)*Math.cos(W.pitch)*cd]; W.tgt=[tx,ty,tz];
+  questHud();
+}
+function questHurt(n,msg){ var W=QG; W.hp=Math.max(0,W.hp-n); questToastMsg(msg,true); W.wrap.classList.add('q-hurt'); setTimeout(function(){ W.wrap&&W.wrap.classList.remove('q-hurt'); },350);
+  if(W.hp<=0) setTimeout(questDead,300); questHud(); }
+
+function questRender(){
+  var W=QG, gl=W.gl, L=W.L; if(!W.cam){ W.cam=[W.p.x,6,W.p.z+10]; W.tgt=[W.p.x,1.6,W.p.z]; }
+  var w=gl.canvas.width, h=gl.canvas.height, VP=M4.mul(M4.persp(1.0,w/h,.3,400),M4.look(W.cam,W.tgt,[0,1,0])); W.VP=VP;
+  gl.clearColor(.62,.84,.98,1); gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+  gl.uniformMatrix4fv(L.uVP,false,new Float32Array(VP)); gl.uniform3fv(L.uEye,W.cam); gl.uniform3fv(L.uFog,[.62,.84,.98]);
+  qBind(W.world); qDraw(W.world,M4.I(),null,0);
+  qBind(W.cube); var t=W.t;
+  // ประตูสะพาน
+  W.bridges.forEach(function(B){ var open=W.isl[B.from+1].open, z=B.z1;
+    if(!open){ for(var i=-2;i<=2;i++) qBox(i*1.1,1.2,z,.25,2.4,.25,'#ef4444',0,.4); qBox(0,2.4,z,5.4,.3,.3,'#ef4444',0,.4); }
+    else { qBox(-2.9,1.2,z,.4,2.4,.4,'#22c55e',0,.5); qBox(2.9,1.2,z,.4,2.4,.4,'#22c55e',0,.5); qBox(-2.9,2.6,z,.6,.6,.6,'#facc15',t,.6); qBox(2.9,2.6,z,.6,.6,.6,'#facc15',t,.6); } });
+  // ฐาน
+  W.bases.forEach(function(B){ var I=W.isl[B.isl], c=B.state==='done'?'#22c55e':B.state==='active'?I.th.accent:'#9ca3af', em=B.state==='active'?.25+.15*Math.sin(t*4):0;
+    qBind(W.cyl); qDraw(W.cyl,M4.chain(M4.T(B.x,.15,B.z),M4.S(2.6,.3,2.6)),'#f8fafc',0); qDraw(W.cyl,M4.chain(M4.T(B.x,.34,B.z),M4.S(2.2,.1,2.2)),c,em); qBind(W.cube);
+    qBox(B.x+1.9,1.7,B.z,.18,3.4,.18,'#e5e7eb'); qBox(B.x+1.9+.55,2.6,B.z,1.1,.7,.08,c,0,em);
+    var bob=Math.sin(t*2+B.no)*.25;
+    if(B.state==='done') qBox(B.x,1.6+bob,B.z,.9,.9,.9,'#facc15',t,.5,M4.Rz(.78));
+    else qBox(B.x,1.4+bob,B.z,1,1,1,c,t*1.5,em+.1);
+    if(B.state==='active') qBox(B.x,0,B.z,.35,40,.35,'#fde047',0,.9); });
+  // เหรียญ หัวใจ
+  W.coins.forEach(function(c){ if(!c.got) qBox(c.x,.7+Math.sin(t*3+c.ph)*.2,c.z,.55,.55,.55,'#fbbf24',t*2+c.ph,.45,M4.Rx(.6)); });
+  W.hearts.forEach(function(hh){ if(!hh.got){ qBox(hh.x,.6+Math.sin(t*2)*.15,hh.z,.9,.9,.9,'#ffffff',t,.2); qBox(hh.x,.95+Math.sin(t*2)*.15,hh.z,.95,.22,.6,'#ef4444',t,.3); qBox(hh.x,.75+Math.sin(t*2)*.15,hh.z,.22,.62,.95,'#ef4444',t,.3); } });
+  // บั๊กบอท
+  W.bots.forEach(function(b){ var st=b.stun>0, sy=st?.35:1, base=M4.chain(M4.T(b.x,0,b.z),M4.Ry(b.a),M4.S(1,sy,1));
+    var part=function(x,y,z,sx,sy2,sz,col,em){ qDraw(W.cube,M4.chain(base,M4.T(x,y,z),M4.S(sx,sy2,sz)),col,em||0); };
+    qBox(b.x,.02,b.z,1.4,.04,1.4,'#1f2937');
+    var hop=st?0:Math.abs(Math.sin(b.ph))*.25;
+    part(0,.75+hop,0,1.2,1,1.1,st?'#a78bfa':'#7c3aed',0); part(-.28,1.05+hop,.56,.26,.22,.05,'#fef08a',.8); part(.28,1.05+hop,.56,.26,.22,.05,'#fef08a',.8);
+    part(0,1.45+hop,0,.12,.5,.12,'#4c1d95'); part(0,1.75+hop,0,.25,.25,.25,'#f43f5e',.6);
+    part(-.35,.15,0,.3,.3,.8,'#4c1d95'); part(.35,.15,0,.3,.3,.8,'#4c1d95'); });
+  // ผู้เล่น
+  var p=W.p; if(!(W.inv>0&&Math.floor(t*12)%2===0)){
+    var sw=Math.sin(t*(p.spd>7?14:10))*Math.min(1,p.spd/6)*.8, air=p.ground?0:.5;
+    var B0=M4.chain(M4.T(p.x,p.y,p.z),M4.Ry(p.face));
+    var limb=function(x,y,ang,sx,sy,sz,col){ qDraw(W.cube,M4.chain(B0,M4.T(x,y,0),M4.Rx(ang),M4.T(0,-sy/2,0),M4.S(sx,sy,sz)),col,0); };
+    var P=function(x,y,z,sx,sy,sz,col,em){ qDraw(W.cube,M4.chain(B0,M4.T(x,y,z),M4.S(sx,sy,sz)),col,em||0); };
+    if(p.y>-0.5) qBox(p.x,.03,p.z,1.1,.04,1.1,'#1f3b2a');
+    limb(-.25,1,sw+air,.42,1,.42,'#334155'); limb(.25,1,-sw+air,.42,1,.42,'#334155');
+    P(0,1.5,0,1,1,.5,W.color); P(0,1.3,.26,1.02,.12,.02,'#ffffff',.1);
+    limb(-.68,1.95,-sw*.9-air,.36,.95,.36,'#f5c9a0'); limb(.68,1.95,sw*.9-air,.36,.95,.36,'#f5c9a0');
+    P(0,2.42,0,.82,.8,.8,'#f5c9a0'); P(0,2.86,0,.88,.2,.88,'#3b2a20'); P(0,2.6,-.37,.88,.5,.14,'#3b2a20');
+    P(-.18,2.5,.41,.1,.14,.02,'#111'); P(.18,2.5,.41,.1,.14,.02,'#111'); P(0,2.28,.41,.22,.05,.02,'#c0563d'); }
+  questOverlay();
+}
+function qProj(x,y,z){ var m=QG.VP, X=m[0]*x+m[4]*y+m[8]*z+m[12], Y=m[1]*x+m[5]*y+m[9]*z+m[13], Wd=m[3]*x+m[7]*y+m[11]*z+m[15];
+  if(Wd<=.1) return null; var c=QG.ov.canvas; return [(X/Wd*.5+.5)*c.width,(1-(Y/Wd*.5+.5))*c.height,Wd]; }
+function qTag(o,text,x,y,bg,fg,size){ o.font='600 '+size+'px Kanit, sans-serif'; var w=o.measureText(text).width+size*1.1, h=size*1.7;
+  o.fillStyle=bg; o.beginPath(); if(o.roundRect) o.roundRect(x-w/2,y-h,w,h,h/2); else o.rect(x-w/2,y-h,w,h); o.fill(); o.fillStyle=fg; o.textAlign='center'; o.textBaseline='middle'; o.fillText(text,x,y-h/2); }
+function questOverlay(){
+  var W=QG, o=W.ov, d=W.dpr, c=o.canvas, p=W.p; o.clearRect(0,0,c.width,c.height);
+  var s=qProj(p.x,p.y+3.3,p.z); if(s) qTag(o,qName(),s[0],s[1],'rgba(17,24,39,.72)','#fff',14*d);
+  W.bases.forEach(function(B){ var dd=Math.hypot(B.x-p.x,B.z-p.z); if(dd>34&&B.state!=='active') return; var q=qProj(B.x,4.2,B.z); if(!q) return;
+    var t=B.state==='done'?'✔ ฐาน '+B.no+' '+'★'.repeat(B.stars):B.state==='active'?'ฐาน '+B.no+' · '+B.lesson.title:'🔒 ฐาน '+B.no;
+    if(t.length>34) t=t.slice(0,33)+'…'; qTag(o,t,q[0],q[1],B.state==='active'?'rgba(250,204,21,.95)':B.state==='done'?'rgba(34,197,94,.9)':'rgba(100,116,139,.8)',B.state==='active'?'#3b2a00':'#fff',(B.state==='active'?14:12)*d); });
+  W.bots.forEach(function(b){ if(Math.hypot(b.x-p.x,b.z-p.z)>16) return; var q=qProj(b.x,2.4,b.z); if(q) qTag(o,b.stun>0?'💫':'บั๊กบอท',q[0],q[1],'rgba(124,58,237,.85)','#fff',11*d); });
+  // ลูกศรชี้ฐานถัดไปเมื่ออยู่นอกจอ
+  var A=W.bases.filter(function(B){ return B.state==='active'; })[0];
+  if(A){ var q2=qProj(A.x,2,A.z), m=40*d, out=!q2||q2[0]<m||q2[0]>c.width-m||q2[1]<m||q2[1]>c.height-m;
+    if(out){ var ddx=A.x-p.x, ddz=A.z-p.z, cy0=Math.cos(W.yaw), sy0=Math.sin(W.yaw), ang=Math.atan2(ddx*cy0-ddz*sy0,-ddx*sy0-ddz*cy0), cx=c.width/2, cy=c.height/2, r=Math.min(cx,cy)-60*d;
+      var ax=cx+Math.sin(ang)*r, ay=cy-Math.cos(ang)*r; o.save(); o.translate(ax,ay); o.rotate(ang); o.fillStyle='#facc15'; o.strokeStyle='#3b2a00'; o.lineWidth=2*d;
+      o.beginPath(); o.moveTo(0,-18*d); o.lineTo(13*d,10*d); o.lineTo(-13*d,10*d); o.closePath(); o.fill(); o.stroke(); o.restore(); } }
+  questMap();
+}
+function questMap(){
+  var W=QG, o=W.map, p=W.p, S2=300, z0=W.isl[0].cz+W.isl[0].r+4, z1=W.isl[W.isl.length-1].cz-W.isl[W.isl.length-1].r-4, sc=(S2-20)/(z0-z1);
+  var X=function(x){ return S2/2+x*sc; }, Z=function(z){ return 10+(z0-z)*sc; };
+  o.clearRect(0,0,S2,S2); o.fillStyle='rgba(74,168,224,.85)'; o.beginPath(); if(o.roundRect) o.roundRect(0,0,S2,S2,30); else o.rect(0,0,S2,S2); o.fill();
+  W.bridges.forEach(function(B){ o.fillStyle=W.isl[B.from+1].open?'#c58c50':'#7f1d1d'; o.fillRect(X(B.x0),Z(B.z1),(B.x1-B.x0)*sc,(B.z1-B.z0)*sc); });
+  W.isl.forEach(function(I){ o.fillStyle=I.th.grass; o.beginPath(); o.arc(X(I.cx),Z(I.cz),I.r*sc,0,7); o.fill(); });
+  W.bases.forEach(function(B){ o.fillStyle=B.state==='done'?'#16a34a':B.state==='active'?'#facc15':'#64748b'; o.beginPath(); o.arc(X(B.x),Z(B.z),B.state==='active'?9:6,0,7); o.fill(); });
+  W.bots.forEach(function(b){ o.fillStyle='#7c3aed'; o.fillRect(X(b.x)-3,Z(b.z)-3,6,6); });
+  o.save(); o.translate(X(p.x),Z(p.z)); o.rotate(p.face); o.fillStyle='#fff'; o.strokeStyle='#111'; o.lineWidth=2; o.beginPath(); o.moveTo(0,-11); o.lineTo(8,8); o.lineTo(-8,8); o.closePath(); o.fill(); o.stroke(); o.restore();
+}
+function questHud(){
+  var W=QG; $('#qHp').style.width=W.hp+'%'; $('#qHp').style.background=W.hp>50?'#22c55e':W.hp>25?'#f59e0b':'#ef4444'; $('#qHpT').textContent=Math.round(W.hp);
+  $('#qSt').textContent=W.stars; $('#qSc').textContent=W.score; var s=Math.floor(W.time); $('#qTm').textContent=Math.floor(s/60)+':'+('0'+s%60).slice(-2);
+  var A=W.bases.filter(function(B){ return B.state==='active'; })[0], g=$('#qGoal');
+  var html=A?ic('flag')+'<div><small>'+esc(W.isl[A.isl].th.name)+' · ฐาน '+A.no+'/'+W.bases.length+' · อีก '+Math.round(Math.hypot(A.x-W.p.x,A.z-W.p.z))+' ม.</small><b>'+esc(A.lesson.title)+'</b></div>':'';
+  if(g._h!==html){ g._h=html; g.innerHTML=html; }
+}
+var qToastT=null;
+function questToastMsg(m,bad){ var t=$('#qToast'); if(!t) return; t.textContent=m; t.className='show'+(bad?' bad':''); clearTimeout(qToastT); qToastT=setTimeout(function(){ t.className=''; },2200); }
+
+/* ---------- ฐานคำถาม ---------- */
+function questBase(B){
+  var W=QG, pool=(QD.questions[String(B.lesson.lessonId)]||[]).slice();
+  for(var i=pool.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), x=pool[i]; pool[i]=pool[j]; pool[j]=x; }
+  W.modal=true; W.keys={}; W.joy={x:0,y:0}; qSnd('base');
+  W.B={base:B,qs:pool.slice(0,3),i:0,ok:0};
+  if(!W.B.qs.length){ W.B.ok=1; W.B.qs=[]; return questBaseEnd(); }
+  questQ();
+}
+function questQ(){
+  var W=QG, R=W.B, q=R.qs[R.i], I=W.isl[R.base.isl], order=[0,1,2,3].filter(function(k){ return q.c[k]; });
+  for(var i=order.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), x=order[i]; order[i]=order[j]; order[j]=x; }
+  R.order=order; R.t0=performance.now();
+  $('#qModal').innerHTML='<div class="qm"><div class="qm-h" style="background:'+I.th.accent+'">'+ic('flag')+'<div><small>'+esc(I.th.name)+' · ฐานที่ '+R.base.no+' · '+esc(R.base.lesson.lessonId)+'</small><b>'+esc(R.base.lesson.title)+'</b></div><span>ข้อ '+(R.i+1)+'/'+R.qs.length+'</span></div>'+
+    '<div class="qm-q">'+esc(q.q)+' <button class="qm-say" onclick="ttsSay(this.parentNode.textContent+\' \'+[].map.call(document.querySelectorAll(\'#qModal .qm-c span\'),function(e){return e.textContent;}).join(\' \'))" title="อ่านให้ฟัง">'+ic('volume_up')+'</button></div>'+
+    '<div class="qm-cs">'+order.map(function(k,n){ return '<button class="qm-c" onclick="questAns('+k+',this)"><b>'+'กขคง'[n]+'</b><span>'+esc(q.c[k])+'</span></button>'; }).join('')+'</div>'+
+    '<div class="qm-f"><span>'+ic('timer')+'ตอบภายใน 15 วินาทีรับโบนัสเพิ่ม</span><span>❤ '+Math.round(W.hp)+'</span></div></div>';
+  $('#qModal').className='show';
+}
+function questAns(k,btn){
+  var W=QG, R=W.B, q=R.qs[R.i]; if(R.lock) return; R.lock=true;
+  var ok=k===q.a, sec=(performance.now()-R.t0)/1000, bonus=ok?Math.max(0,Math.round(50*(1-sec/15))):0;
+  document.querySelectorAll('#qModal .qm-c').forEach(function(b,n){ if(R.order[n]===q.a) b.classList.add('ok'); });
+  if(ok){ R.ok++; W.score+=100+bonus; qSnd('ok'); } else { btn.classList.add('bad'); W.hp=Math.max(0,W.hp-20); qSnd('bad'); }
+  var f=document.createElement('div'); f.className='qm-res '+(ok?'ok':'bad'); f.innerHTML=ok?'ถูกต้อง! +'+(100+bonus)+' แต้ม'+(bonus?' (ตอบเร็ว +'+bonus+')':''):'ยังไม่ถูก −20 พลังชีวิต · คำตอบที่ถูกเป็นสีเขียว';
+  $('#qModal .qm-f').before(f); questHud();
+  setTimeout(function(){ R.lock=false; if(W.hp<=0){ questCloseModal(); return questDead(); } R.i++; if(R.i<R.qs.length) questQ(); else questBaseEnd(); },ok?1100:2200);
+}
+function questBaseEnd(){
+  var W=QG, R=W.B, B=R.base, n=R.qs.length||1, st=R.qs.length?Math.round(R.ok/n*3):3;
+  if(st<1 && R.qs.length){ // ตอบถูกไม่ถึง ต้องลองใหม่
+    $('#qModal').innerHTML='<div class="qm qm-end"><div class="qm-big">😅</div><h3>ยังไม่ผ่านฐานนี้</h3><p>ตอบถูก '+R.ok+'/'+n+' ข้อ ต้องตอบถูกอย่างน้อย 1 ข้อ ลองทบทวนบทเรียนแล้วเข้าฐานใหม่อีกครั้งนะ</p><button class="btn btn-pink" onclick="questCloseModal()">'+ic('replay')+' ไปต่อ</button></div>';
+    W._baseCd=W.t+4; return; }
+  B.state='done'; B.stars=st; W.stars+=st; W.score+=50; W.hp=Math.min(100,W.hp+15);
+  var nx=W.bases[B.no]; var I=W.isl[B.isl], unitDone=W.bases.every(function(x){ return x.isl!==B.isl||x.state==='done'; }), msg='';
+  if(unitDone&&W.isl[B.isl+1]){ W.isl[B.isl+1].open=true; W.score+=200; msg='<div class="qm-unlock">'+ic('lock_open')+' ผ่าน'+esc(I.th.name)+'ครบแล้ว! สะพานไป'+esc(W.isl[B.isl+1].th.name)+'เปิดแล้ว (+200 แต้ม)</div>'; }
+  if(nx) nx.state='active';
+  var all=!nx;
+  $('#qModal').innerHTML='<div class="qm qm-end"><div class="qm-stars">'+[0,1,2].map(function(i){ return '<span class="'+(i<st?'on':'')+'">★</span>'; }).join('')+'</div>'+
+    '<h3>ผ่านฐานที่ '+B.no+' แล้ว!</h3><p>ตอบถูก '+R.ok+'/'+R.qs.length+' ข้อ · ได้รับ <b>'+st+' ดาว</b> จากครู · +50 แต้ม · +15 พลังชีวิต</p>'+msg+
+    '<button class="btn btn-pink" onclick="questCloseModal()'+(all?';questWin()':'')+'">'+ic(all?'emoji_events':'arrow_forward')+(all?' รับรางวัล':' ไปฐานต่อไป')+'</button></div>';
+  qSnd('base'); if(typeof confetti==='function'&&st===3) confetti(); questHud();
+}
+function questCloseModal(){ var W=QG; if(!W) return; $('#qModal').className=''; $('#qModal').innerHTML=''; W.modal=false; W.keys={}; W._baseCd=W._baseCd&&W._baseCd>W.t?W._baseCd:W.t+1.5; W.last=performance.now(); if(typeof ttsStop==='function') ttsStop(); }
+function questPause(){ var W=QG; if(!W||W.done||W.modal) return; W.modal=true;
+  $('#qModal').innerHTML='<div class="qm qm-end"><div class="qm-big">⏸</div><h3>หยุดเกมชั่วคราว</h3><p>⭐ '+W.stars+' ดาว · 🪙 '+W.score+' แต้ม · ผ่าน '+W.bases.filter(function(b){ return b.state==='done'; }).length+'/'+W.bases.length+' ฐาน</p>'+
+    '<div class="qm-btns"><button class="btn btn-pink" onclick="questCloseModal()">'+ic('play_arrow')+' เล่นต่อ</button><button class="btn btn-ghost" onclick="questEnd(false)">'+ic('logout')+' จบเกมและบันทึก</button></div></div>';
+  $('#qModal').className='show'; }
+function questDead(){ var W=QG; if(!W||W.done) return; W.modal=true;
+  $('#qModal').innerHTML='<div class="qm qm-end"><div class="qm-big">💔</div><h3>พลังชีวิตหมดแล้ว</h3><p>ฟื้นพลังแล้วเล่นต่อจากจุดเดิมได้ (หัก 100 แต้ม) หรือจบเกมแล้วบันทึกแต้มที่ได้</p>'+
+    '<div class="qm-btns"><button class="btn btn-pink" onclick="questRevive()">'+ic('favorite')+' ฟื้นพลังเล่นต่อ</button><button class="btn btn-ghost" onclick="questEnd(false)">'+ic('logout')+' จบเกม</button></div></div>';
+  $('#qModal').className='show'; }
+function questRevive(){ var W=QG; W.hp=100; W.score=Math.max(0,W.score-100); W.inv=2; W.p.x=W.safe.x; W.p.z=W.safe.z; W.p.y=1; questCloseModal(); questHud(); }
+function questWin(){ var W=QG; W.score+=500+Math.max(0,1200-Math.round(W.time)); questEnd(true); }
+function questEnd(win){
+  var W=QG; if(!W) return; W.done=true; W.modal=true; var bases=W.bases.filter(function(b){ return b.state==='done'; }).length, s=Math.floor(W.time);
+  var logged=S.user&&S.user.role==='student'&&S.token;
+  $('#qModal').innerHTML='<div class="qm qm-end"><div class="qm-big">'+(win?'🏆':'🎮')+'</div><h3>'+(win?'สุดยอด! ผจญภัยครบทุกฐานแล้ว':'จบการผจญภัย')+'</h3>'+
+    '<div class="qm-sum"><div><b>⭐ '+W.stars+'</b><small>ดาวจากครู</small></div><div><b>🪙 '+W.score+'</b><small>แต้ม</small></div><div><b>'+bases+'/'+W.bases.length+'</b><small>ฐาน</small></div><div><b>'+Math.floor(s/60)+':'+('0'+s%60).slice(-2)+'</b><small>เวลา</small></div></div>'+
+    '<p id="qSave">'+(logged?'กำลังบันทึกแต้มและดาว...':'ยังไม่ได้เข้าสู่ระบบ แต้มรอบนี้จึงไม่ถูกบันทึก')+'</p>'+
+    '<div class="qm-btns"><button class="btn btn-pink" onclick="questExit();questStart()">'+ic('replay')+' เล่นอีกครั้ง</button><button class="btn btn-ghost" onclick="questExit()">'+ic('home')+' ออกจากเกม</button></div></div>';
+  $('#qModal').className='show'; if(win&&typeof confetti==='function') confetti();
+  if(logged&&!W.saved){ W.saved=true; api('saveQuest',S.token,{score:W.score,stars:W.stars,bases:bases,seconds:s,finished:!!win}).then(function(B){
+      var el=$('#qSave'); if(el) el.innerHTML='✅ บันทึกแล้ว · ดาวสะสมทั้งหมด <b>'+(B.me?B.me.stars:W.stars)+'</b> ดวง · แต้มสะสม <b>'+(B.me?B.me.score:W.score)+'</b>'+(B.rank?' · อันดับ <b>'+B.rank+'</b> ของห้อง':''); })
+    .catch(function(e){ var el=$('#qSave'); if(el) el.textContent='บันทึกไม่สำเร็จ: '+e; }); }
+}
+function questExit(silent){ var W=QG; if(!W) return; W.run=false; document.removeEventListener('keydown',W.onKey); document.removeEventListener('keyup',W.onKey);
+  window.removeEventListener('resize',questResize); try{ W.ac&&W.ac.close(); }catch(e){} W.wrap.remove(); document.body.classList.remove('q-on'); QG=null;
+  if(typeof ttsStop==='function') ttsStop(); if(!silent&&(location.hash||'').indexOf('quest')>-1) questLobby(); }
+
 /* ===================== มุมเกมการศึกษา ===================== */
 var GAMES=[
   {id:'picker',art:'star',icon:'casino',t:'วงล้อสุ่มเรียกชื่อ',d:'หมุนวงล้อสุ่มเรียกชื่อหรือเลขที่ ใช้ตอบคำถามในห้องเรียน',c:['#2cbc6f','#4fd68e']},
   {id:'edp',art:'robot',icon:'reorder',t:'เรียงขั้นตอน EDP',d:'แข่งกันเรียง 6 ขั้นกระบวนการออกแบบเชิงวิศวกรรมให้เร็วที่สุด (หน่วยที่ 2)',c:['#2dbfac','#aaf0e7']}
 ];
 function gamesBox(){
-  return '<div><div class="sec-title">'+ic('sports_esports')+'<h3>มุมเกมการศึกษา</h3></div><div class="games">'+GAMES.map(function(g){
+  return '<div><div class="sec-title">'+ic('sports_esports')+'<h3>มุมเกมการศึกษา</h3></div>'+
+    '<div class="game-feat" onclick="go(\'quest\')"><div class="gf-i">🏝️</div><div><b>FLIP Quest 3D</b><small>วิ่งผจญภัยเก็บฐานทั้ง 3 เกาะ ตอบคำถาม สะสมแต้มและดาวจากครู</small></div><span class="go">เล่นเลย ▶</span></div>'+
+    '<div class="games">'+GAMES.map(function(g){
     return '<div class="game-c" onclick="go(\'game/'+g.id+'\')"><div class="gi kwbox" style="'+grad(g.c)+'">'+kawaii(g.art,52,'bob')+'</div><div><b>'+g.t+'</b><div class="small muted">'+g.d+'</div></div>'+ic('play_circle','color:'+g.c[0]+';font-size:32px')+'</div>';
   }).join('')+'</div></div>';
 }
