@@ -8,7 +8,7 @@
 <script>
 /* ========== ตั้งค่า: วางลิงก์ Web app ของ Apps Script (ม.3) ระหว่างเครื่องหมาย ' ' ==========
    ต้องเป็นรูปแบบ https://script.google.com/macros/s/xxxxxxxx/exec  */
-var FLIP_API = 'https://script.google.com/macros/s/AKfycbzug_sWg5EpQpX67BUk7bi3vpwsEZIBjdzcm0FUTN7fUo-qgnIzDjywqae188wC4pA_/exec';
+var FLIP_API = 'https://script.google.com/a/macros/nongtong.ac.th/s/AKfycbx1WlN9W0Vn4Eb4rlddGRENDa5BH_vqOG32a4lRxcRU5MeOFa4d4qCjbZyjoUG_lcTx/exec';
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -739,6 +739,25 @@ body:has(.tlayout) .topbar-in{max-width:1480px}
 .tts-hint{font-size:13px;opacity:.9;display:flex;gap:4px;align-items:center}
 .tts-hl{background:#fff4c2!important;outline:3px solid #ffd34d;border-radius:8px;transition:background .2s}
 @media(max-width:640px){.tts-fab span,.tts-hint{display:none}.tts-fab{padding:12px}.tts-bar{bottom:76px}}
+
+/* ===== มาตรฐาน/ตัวชี้วัด/จุดประสงค์ และโครงสร้างรายวิชา ===== */
+.std{margin-top:8px}.std-chips{display:flex;flex-wrap:wrap;gap:6px}
+.std-d{margin-top:8px;background:#f6fcf9;border:1px solid #e1f6ea;border-radius:14px;padding:4px 12px}
+.std-d summary{cursor:pointer;font-family:'Kanit';font-size:14px;color:var(--pink);display:flex;align-items:center;gap:4px;padding:6px 0;list-style:none}
+.std-d summary::-webkit-details-marker{display:none}.std-d[open] summary .ms{transform:rotate(180deg)}
+.std-b{padding:4px 0 10px;text-align:left}.std-b>b{display:block;margin:10px 0 4px;font-size:15px}
+.kpa{list-style:none;margin:4px 0;padding:0;display:grid;gap:6px}.kpa li{display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.5}
+.kpa li small{display:block;color:var(--ink2);font-size:12px}
+.kpa-t{flex:none;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;color:#fff;font-family:'Kanit';font-size:13px}
+.kpa-K{background:#2a9d6f}.kpa-P{background:#2dbfac}.kpa-A{background:#e8a33d}
+.cs-sec{margin-top:16px}.cs-t td,.cs-t th{vertical-align:top}.cs-t .c{text-align:center}.cs-t .nw{white-space:nowrap}
+.cs-t tr.sub td{background:#f2fbf6}.cs-t tr.tot td{background:#e3f7ec;font-size:16px}
+.cs-hr td{font-size:14px}.cs-hr .ugrp td{background:linear-gradient(90deg,#2a6b50,#2dbfac);color:#fff;font-family:'Kanit';font-weight:500;border-radius:10px}
+.cs-hr td:nth-child(4){min-width:260px}.cs-hr td:nth-child(5),.cs-hr td:nth-child(6){min-width:200px}
+.cs-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sbar{display:flex;gap:4px;margin-top:6px;border-radius:14px;overflow:hidden}
+.sbar>div{color:#fff;padding:10px 12px;min-width:90px;display:flex;flex-direction:column}.sbar b{font-family:'Kanit';font-size:20px;line-height:1.1}.sbar span{font-size:12px;opacity:.95}
+@media print{ .footer,.crumb,.fab,#ttsBar,.kpis{display:none!important} .cs-hr td{font-size:11px;padding:5px} .cs-hr td:nth-child(4){min-width:0} .tbl-wrap{overflow:visible} .unit-banner{print-color-adjust:exact;-webkit-print-color-adjust:exact} .sbar>div,.cs-hr .ugrp td,.kpa-t{print-color-adjust:exact;-webkit-print-color-adjust:exact} .card{break-inside:auto} tr{break-inside:avoid} }
 </style>
 </head>
 <body>
@@ -927,7 +946,7 @@ function api(fn){
         .then(function(j){ if(!j.ok) throw j.error; if(SWR_FNS[fn]) try{ store(key, JSON.stringify(j.data)); }catch(e){} return j.data; });
       if (hit){ try{ res(JSON.parse(hit)); net.catch(function(){}); return; }catch(e){} }
       net.then(res).catch(function(e){ rej(typeof e==='string' ? e : 'เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ ลองใหม่อีกครั้ง'); });
-    } else if(!MOCK[fn]){ rej('ยังไม่ได้ใส่ลิงก์ Web app ในบรรทัด var FLIP_API (ต้องขึ้นต้นด้วย https://script.google.com/macros/s/ และลงท้ายด้วย /exec)'); } else setTimeout(function(){ try{ res(MOCK[fn].apply(null,args)); }catch(e){ rej(e.message||e); } },200);
+    } else if(!MOCK[fn]){ rej('ยังไม่ได้ใส่ลิงก์ Web app ในบรรทัด var FLIP_API (ต้องขึ้นต้นด้วย https://script.google.com/macros/s/ และลงท้ายด้วย /exec)'); } else if(!MOCK[fn]){ rej('ยังไม่ได้ใส่ลิงก์ Web app ในบรรทัด var FLIP_API (ต้องขึ้นต้นด้วย https://script.google.com/macros/s/ และลงท้ายด้วย /exec)'); } else setTimeout(function(){ try{ res(MOCK[fn].apply(null,args)); }catch(e){ rej(e.message||e); } },200);
   });
 }
 function call(){
@@ -1190,7 +1209,7 @@ function renderLesson(){
       '<a onclick="go(\'unit/'+encodeURIComponent(l.unitId)+'\')">หน่วยที่ '+(idx+1)+(L.unit?' '+esc(L.unit.title):'')+'</a>'+ic('chevron_right','font-size:18px')+'<span>'+esc(l.lessonId)+'</span></div>'+
     '<div class="card lesson-head"><div class="uic kwbox" style="'+grad(UNIT_COLORS[idx%6])+'">'+kawaii(lessonArt(l.lessonId)[0],58)+'</div><div>'+
       '<div class="muted kanit small">บทเรียน '+esc(l.lessonId)+(p?' · ทำแล้ว '+p.done+'/'+p.total+' ขั้น':'')+'</div><h2>'+esc(l.title)+'</h2>'+
-      (l.objective?'<div class="obj">'+ic('flag')+'<span>'+esc(l.objective)+'</span></div>':'')+'</div></div>'+
+      lessonStd(l)+'</div></div>'+
     ((L.cheers&&L.cheers.length)?'<div class="cheer lesson-cheer"><div class="cs">'+(STICKERS[L.cheers[0].sticker]||STICKERS.star)[0]+'</div><div><b>ครูบอกว่า: '+esc(L.cheers[0].message)+'</b><div class="small muted">'+fmtDate(L.cheers[0].time)+'</div></div></div>':'')+
     lessonDateNote(L)+'<div class="stepper">'+steps+'</div>'+
     '<div class="phase-tags">'+['F','L','I','P'].map(function(k){ return '<div style="background:'+FLIP_COLORS[k][0]+'1f;color:'+FLIP_COLORS[k][0]+'"><b>'+k+'</b> '+esc(flipName(k).split(' (')[0])+'</div>'; }).join('')+'</div>'+
@@ -2187,6 +2206,69 @@ function courseCard(){
     '<div class="uic">'+ic('menu_book')+'</div><div class="lbl">ข้อมูลรายวิชา</div><h4>คำอธิบายรายวิชา และตัวชี้วัด</h4><p>มาตรฐาน ว 4.1 ตัวชี้วัด ม.3/1–ม.3/5 และโครงสร้างรายวิชา</p>'+
     '<div class="foot"><span></span><span>เปิดดู '+ic('arrow_forward','font-size:16px')+'</span></div></div>';
 }
+/* ===================== มาตรฐาน ตัวชี้วัด จุดประสงค์ (แผนรายชั่วโมง) ===================== */
+function indMap(C){ var m={}; String((C||{})['ตัวชี้วัด']||'').split('\n').forEach(function(l){ var p=l.split('|'); if(p.length>1) m[p[0].trim().replace(/^ว\s*4\.1\s*/,'')]=p.slice(1).join('|').trim(); }); return m; }
+function indList(s){ return String(s||'').split(/[,\s]+/).map(function(x){ return x.trim(); }).filter(function(x){ return /^ม\.\d\/\d$/.test(x); }); }
+function hoursOf(lessonId){ return ((S.home&&S.home.hours)||[]).filter(function(h){ return String(h.lessonId)===String(lessonId); }); }
+function hrRange(rows){ var a=rows.map(function(h){ return Number(h.hour); }); return a.length>1?Math.min.apply(null,a)+'–'+Math.max.apply(null,a):String(a[0]); }
+function kpaList(h){ return '<ul class="kpa">'+[['K','ด้านความรู้',h.k],['P','ด้านทักษะกระบวนการ',h.p],['A','ด้านคุณลักษณะ',h.a]].filter(function(x){ return String(x[2]||'').trim(); })
+  .map(function(x){ return '<li><span class="kpa-t kpa-'+x[0]+'">'+x[0]+'</span><div><small>'+x[1]+'</small>'+esc(x[2])+'</div></li>'; }).join('')+'</ul>'; }
+function lessonStd(l){
+  var rows=hoursOf(l.lessonId), C=(S.home&&S.home.course)||{};
+  if(!rows.length) return l.objective?'<div class="obj">'+ic('flag')+'<span>'+esc(l.objective)+'</span></div>':'';
+  var M=indMap(C), inds=[]; rows.forEach(function(h){ indList(h.ind).forEach(function(k){ if(inds.indexOf(k)<0) inds.push(k); }); });
+  var sc=rows.reduce(function(a,h){ return a+(Number(h.score)||0); },0);
+  return '<div class="std"><div class="std-chips"><span class="chip c-info">'+ic('flag','font-size:16px')+'มาตรฐาน ว 4.1</span>'+
+    inds.map(function(k){ return '<span class="chip c-pink">ว 4.1 '+esc(k)+'</span>'; }).join('')+
+    '<span class="chip c-wait">'+ic('schedule','font-size:16px')+rows.length+' ชั่วโมง (ชม.ที่ '+hrRange(rows)+')</span>'+(sc?'<span class="chip c-ok">'+ic('star','font-size:16px')+'คะแนนเก็บ '+sc+'</span>':'')+'</div>'+
+    '<details class="std-d"><summary>'+ic('expand_more','font-size:18px')+'ดูมาตรฐาน ตัวชี้วัด และจุดประสงค์การเรียนรู้</summary>'+
+      '<div class="std-b"><b class="kanit">มาตรฐานการเรียนรู้</b><div class="small">'+esc(C['มาตรฐานการเรียนรู้']||'ว 4.1')+'</div>'+
+      '<b class="kanit">ตัวชี้วัด</b>'+inds.map(function(k){ return '<div class="small"><b>ว 4.1 '+esc(k)+'</b> '+esc(M[k]||'')+'</div>'; }).join('')+
+      '<b class="kanit">จุดประสงค์การเรียนรู้</b>'+rows.map(function(h){ return (rows.length>1?'<div class="small muted kanit" style="margin-top:6px">ชั่วโมงที่ '+esc(h.hour)+' · '+esc(String(h.topic).replace(/^.*?\(\d\/\d\):\s*/,''))+'</div>':'')+kpaList(h); }).join('')+
+    '</div></details></div>';
+}
+
+/* ===================== หน้าคำอธิบายรายวิชา: โครงสร้าง เวลา คะแนน และวิเคราะห์รายชั่วโมง ===================== */
+function courseStructHtml(H){
+  var C=H.course||{}, HR=H.hours||[], SC=H.score||{collect:60,mid:10,fin:30,work:60,test:30,resp:10,pass:70,kpa:'30:50:20'};
+  var units={}; (H.units||[]).forEach(function(u,i){ units[u.unitId]={u:u,i:i}; });
+  var M=indMap(C), IND=Object.keys(M);
+  var byU=[], idx={}; HR.forEach(function(h){ var k=String(h.unitId); if(idx[k]==null){ idx[k]=byU.length; byU.push({id:k,rows:[]}); } byU[idx[k]].rows.push(h); });
+  var totH=HR.length, totS=HR.reduce(function(a,h){ return a+(Number(h.score)||0); },0);
+  var uname=function(id){ var U=units[id]; return U?'<span class="chip c-pink">หน่วยที่ '+(U.i+1)+'</span> '+esc(U.u.title):esc(id); };
+  var unitInds=function(rows){ var a=[]; rows.forEach(function(h){ indList(h.ind).forEach(function(k){ if(a.indexOf(k)<0) a.push(k); }); }); return a.sort(); };
+  // 1) โครงสร้างรายวิชา
+  var struct='<div class="card panel cs-sec"><h3>'+ic('account_tree')+'โครงสร้างรายวิชา การแบ่งเวลา และน้ำหนักคะแนน</h3><div class="tbl-wrap"><table class="tbl cs-t"><thead><tr><th>หน่วยการเรียนรู้</th><th>ตัวชี้วัด</th><th>บทเรียน</th><th class="c">ชั่วโมงที่</th><th class="c">เวลา (ชม.)</th><th class="c">คะแนน</th></tr></thead><tbody>'+
+    byU.map(function(g){ var ls=[]; g.rows.forEach(function(h){ if(ls.indexOf(h.lessonId)<0) ls.push(h.lessonId); }); var s=g.rows.reduce(function(a,h){ return a+(Number(h.score)||0); },0);
+      return '<tr><td>'+uname(g.id)+'</td><td>'+unitInds(g.rows).map(function(k){ return 'ว 4.1 '+k; }).join('<br>')+'</td><td class="small">'+ls.map(esc).join(', ')+'</td><td class="c kanit">'+hrRange(g.rows)+'</td><td class="c kanit">'+g.rows.length+'</td><td class="c kanit">'+s+'</td></tr>'; }).join('')+
+    '<tr class="sub"><td colspan="4"><b class="kanit">รวมคะแนนเก็บระหว่างภาค</b></td><td class="c kanit"><b>'+totH+'</b></td><td class="c kanit"><b>'+totS+'</b></td></tr>'+
+    '<tr><td colspan="5">'+ic('edit_note','font-size:18px')+' สอบกลางภาค <span class="small muted">('+esc(SC.midScope||'')+')</span></td><td class="c kanit">'+SC.mid+'</td></tr>'+
+    '<tr><td colspan="5">'+ic('assignment','font-size:18px')+' สอบปลายภาค <span class="small muted">('+esc(SC.finScope||'')+')</span></td><td class="c kanit">'+SC.fin+'</td></tr>'+
+    '<tr class="tot"><td colspan="4"><b class="kanit">รวมทั้งรายวิชา</b></td><td class="c kanit"><b>'+totH+'</b></td><td class="c kanit"><b>'+(totS+Number(SC.mid)+Number(SC.fin))+'</b></td></tr></tbody></table></div>'+
+    (totS!==Number(SC.collect)?'<div class="small" style="color:#b26b00;margin-top:6px">'+ic('warning','font-size:16px')+' คะแนนเก็บรายชั่วโมงรวม '+totS+' ไม่เท่ากับคะแนนเก็บในชีตตั้งค่า ('+SC.collect+')</div>':'')+'</div>';
+  // 2) สัดส่วนคะแนน
+  var kpa=String(SC.kpa||'').split(':').map(function(x){ return x.trim(); });
+  var bar=function(items){ return '<div class="sbar">'+items.map(function(x){ return '<div style="flex:'+x[1]+';background:'+x[2]+'"><b>'+x[1]+'</b><span>'+x[0]+'</span></div>'; }).join('')+'</div>'; };
+  var score='<div class="card panel cs-sec"><h3>'+ic('pie_chart')+'สัดส่วนคะแนน</h3>'+
+    '<div class="small muted kanit">คะแนนรวม 100 คะแนน</div>'+bar([['คะแนนเก็บ',SC.collect,'#2a9d6f'],['กลางภาค',SC.mid,'#2dbfac'],['ปลายภาค',SC.fin,'#e8a33d']])+
+    '<div class="small muted kanit" style="margin-top:14px">คะแนนเก็บของแต่ละบทเรียน (ร้อยละ)</div>'+bar([['ใบงาน/ชิ้นงาน (รูบริก EDP 6 ประเด็น)',SC.work,'#5b8def'],['แบบทดสอบหลังเรียน',SC.test,'#9b6cf0'],['ทำครบทุกขั้น FLIP',SC.resp,'#f07c9b']])+
+    (kpa.length===3?'<div class="small muted kanit" style="margin-top:14px">อัตราส่วนการวัด K : P : A</div>'+bar([['ความรู้ (K)',kpa[0],'#2a9d6f'],['ทักษะกระบวนการ (P)',kpa[1],'#2dbfac'],['คุณลักษณะ (A)',kpa[2],'#e8a33d']]):'')+
+    '<div class="small muted" style="margin-top:12px">'+ic('info','font-size:16px')+' แต่ละชั่วโมงมีคะแนนเก็บตามตารางวิเคราะห์ · แบบทดสอบหลังเรียนผ่านเกณฑ์ร้อยละ '+SC.pass+' · เกณฑ์เกรด 80 ขึ้นไป = 4 · 75 = 3.5 · 70 = 3 · 65 = 2.5 · 60 = 2 · 55 = 1.5 · 50 = 1 · ต่ำกว่า 50 = 0</div></div>';
+  // 3) ความสอดคล้องตัวชี้วัด × หน่วย
+  var mtx='<div class="card panel cs-sec"><h3>'+ic('grid_on')+'ตารางวิเคราะห์ความสอดคล้องตัวชี้วัดกับหน่วยการเรียนรู้ (จำนวนชั่วโมง)</h3><div class="tbl-wrap"><table class="tbl cs-t"><thead><tr><th>ตัวชี้วัด</th>'+
+    byU.map(function(g){ var U=units[g.id]; return '<th class="c">หน่วยที่ '+(U?U.i+1:esc(g.id))+'</th>'; }).join('')+'<th class="c">รวม (ชม.)</th></tr></thead><tbody>'+
+    IND.map(function(k){ var t=0; return '<tr><td><b class="kanit">ว 4.1 '+esc(k)+'</b><div class="small muted">'+esc(M[k])+'</div></td>'+byU.map(function(g){ var n=g.rows.filter(function(h){ return indList(h.ind).indexOf(k)>-1; }).length; t+=n;
+      return '<td class="c kanit">'+(n?'<span class="chip c-ok">✓ '+n+'</span>':'<span class="muted">–</span>')+'</td>'; }).join('')+'<td class="c kanit"><b>'+t+'</b></td></tr>'; }).join('')+'</tbody></table></div>'+
+    '<div class="small muted" style="margin-top:6px">ชั่วโมงที่มีหลายตัวชี้วัดจะนับในทุกตัวชี้วัดที่เกี่ยวข้อง</div></div>';
+  // 4) วิเคราะห์รายชั่วโมง
+  var plan='<div class="card panel cs-sec cs-plan"><div class="cs-hd"><h3>'+ic('schedule')+'ตารางวิเคราะห์รายชั่วโมง ('+totH+' ชั่วโมง)</h3><button class="btn btn-ghost btn-sm no-print" onclick="window.print()">'+ic('print')+' พิมพ์ / บันทึก PDF</button></div>'+
+    '<div class="small muted" style="margin-bottom:8px">ตัวชี้วัด จุดประสงค์การเรียนรู้ (K P A) กิจกรรม FLIP-EDP การวัดและประเมินผล และคะแนน ของแต่ละชั่วโมง</div><div class="tbl-wrap"><table class="tbl cs-t cs-hr"><thead><tr><th class="c">ชม.</th><th>เรื่อง</th><th>ตัวชี้วัด</th><th>จุดประสงค์การเรียนรู้</th><th>กิจกรรมการเรียนรู้</th><th>การวัดและประเมินผล</th><th class="c">คะแนน</th></tr></thead><tbody>'+
+    byU.map(function(g){ var U=units[g.id]; return '<tr class="ugrp"><td colspan="7">'+(U?'หน่วยการเรียนรู้ที่ '+(U.i+1)+' '+esc(U.u.title):esc(g.id))+' · '+g.rows.length+' ชั่วโมง</td></tr>'+
+      g.rows.map(function(h){ return '<tr><td class="c kanit"><b>'+esc(h.hour)+'</b></td><td><span class="chip c-info">'+esc(h.lessonId)+'</span><div>'+esc(h.topic)+'</div></td><td class="nw">'+indList(h.ind).map(function(k){ return 'ว 4.1 '+k; }).join('<br>')+'</td><td>'+kpaList(h)+'</td><td class="small">'+esc(h.activity)+'</td><td class="small">'+esc(h.assess)+'</td><td class="c kanit">'+esc(h.score)+'</td></tr>'; }).join(''); }).join('')+
+    '</tbody></table></div><div class="small muted no-print" style="margin-top:8px">'+ic('edit_note','font-size:16px')+' ครูแก้ไขได้ที่ เมนูครู › จัดการเนื้อหา › วิเคราะห์รายชั่วโมง</div></div>';
+  return struct+score+mtx+plan;
+}
+
 function renderCourse(){
   loadHome().then(function(H){
     var C=H.course||{};
@@ -2202,8 +2284,8 @@ function renderCourse(){
       '<div class="card panel" style="margin-bottom:16px"><h3>'+ic('description')+'คำอธิบายรายวิชา</h3><div class="c-desc">'+String(C['คำอธิบายรายวิชา']||'').split(/\n+/).map(function(p){ return '<p>'+esc(p)+'</p>'; }).join('')+'</div></div>'+
       '<div class="card panel" style="margin-bottom:16px"><h3>'+ic('flag')+'มาตรฐานการเรียนรู้</h3><div class="box" style="margin-top:6px">'+esc(C['มาตรฐานการเรียนรู้']||'')+'</div>'+
       '<h3 style="margin-top:16px">'+ic('checklist')+'ตัวชี้วัด</h3><div class="inds">'+ind+'</div><div class="small muted" style="margin-top:6px">รวม '+(ind.split('class="ind"').length-1)+' ตัวชี้วัด</div></div>'+
-      '<div class="card panel"><h3>'+ic('account_tree')+'โครงสร้างรายวิชา</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>หน่วยการเรียนรู้</th><th>ตัวชี้วัด</th><th>เวลา (ชั่วโมง)</th></tr></thead><tbody>'+struct+
-        '<tr><td colspan="2"><b class="kanit">รวม</b></td><td class="kanit"><b>'+tot+'</b></td></tr></tbody></table></div></div></div>'+footer();
+      ((H.hours&&H.hours.length)?courseStructHtml(H):'<div class="card panel"><h3>'+ic('account_tree')+'โครงสร้างรายวิชา</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>หน่วยการเรียนรู้</th><th>ตัวชี้วัด</th><th>เวลา (ชั่วโมง)</th></tr></thead><tbody>'+struct+
+        '<tr><td colspan="2"><b class="kanit">รวม</b></td><td class="kanit"><b>'+tot+'</b></td></tr></tbody></table></div></div>')+'</div>'+footer();
   }).catch(function(){});
 }
 
@@ -2655,7 +2737,7 @@ function gMatch(){
 
 /* ===================== ม.3: จัดการเนื้อหา (ครูแก้ไขได้ทุกอย่าง) ===================== */
 var CE_TABS=[['lessons','menu_book','บทเรียน'],['units','widgets','หน่วยการเรียนรู้'],['questions','quiz','แบบทดสอบท้ายบท'],['rubric','rate_review','เกณฑ์รูบริก'],
-  ['config','tune','ตั้งค่า & สัดส่วนคะแนน'],['course','description','ข้อมูลรายวิชา'],['skillQ','psychology_alt','แบบวัดทักษะ'],['bank','inventory_2','คลังข้อสอบ'],['news','campaign','กระดานข่าว']];
+  ['config','tune','ตั้งค่า & สัดส่วนคะแนน'],['course','description','ข้อมูลรายวิชา'],['hours','schedule','วิเคราะห์รายชั่วโมง'],['skillQ','psychology_alt','แบบวัดทักษะ'],['bank','inventory_2','คลังข้อสอบ'],['news','campaign','กระดานข่าว']];
 var CE={key:'lessons',data:null,q:''};
 function tContent(D){
   $('#tbody').innerHTML='<div class="card panel" style="margin-bottom:14px"><h3>'+ic('edit_note')+'จัดการเนื้อหา</h3><div class="small muted">แก้ไขทุกอย่างได้จากหน้านี้ ไม่ต้องเปิด Google Sheets · บันทึกแล้วนักเรียนเห็นทันทีเมื่อรีเฟรชหน้าเว็บ</div>'+
@@ -2666,7 +2748,7 @@ function ceShort(v,n){ v=String(v==null?'':v).replace(/\s+/g,' '); return v.leng
 function ceList(){
   var R=CE.data, q=CE.q.toLowerCase();
   var rows=R.rows.filter(function(r){ return !q || R.keys.some(function(k){ return String(r[k]).toLowerCase().indexOf(q)>-1; }); });
-  var hint={config:'แก้สัดส่วนคะแนน เกณฑ์ผ่าน ระดับนักนวัตกร คะแนน XP รหัสผ่าน ชื่อเว็บ ได้ที่นี่',rubric:'รูบริกมี 6 ประเด็นตามขั้น EDP (เต็ม 24) แก้ชื่อประเด็นและคำอธิบายระดับคะแนนได้',
+  var hint={hours:'แต่ละแถว = 1 ชั่วโมง · ตัวชี้วัดเขียนแบบ ม.3/1, ม.3/2 · คะแนนเก็บรวมทุกชั่วโมงควรเท่ากับคะแนนเก็บในตั้งค่า (60) · ผลจะแสดงในหน้าคำอธิบายรายวิชาและในแต่ละบทเรียน',config:'แก้สัดส่วนคะแนน เกณฑ์ผ่าน ระดับนักนวัตกร คะแนน XP รหัสผ่าน ชื่อเว็บ ได้ที่นี่',rubric:'รูบริกมี 6 ประเด็นตามขั้น EDP (เต็ม 24) แก้ชื่อประเด็นและคำอธิบายระดับคะแนนได้',
     questions:'ค้นหาด้วยรหัสบทเรียน เช่น L2.3 · เฉลยใส่ ก/ข/ค/ง',bank:'ใช้สอบ = TRUE คือข้อที่ถูกสุ่มมาสอบ · เฉลยใส่ ก/ข/ค/ง',lessons:'ใบความรู้ใช้ ## เป็นหัวข้อ และ - เป็นหัวข้อย่อย'}[R.key]||'';
   $('#ceBody').innerHTML='<div class="ce-bar"><input class="input" id="ceQ" placeholder="ค้นหาใน'+esc(R.title)+'..." value="'+esc(CE.q)+'">'+
     (R.fixed?'':'<button class="btn btn-pink" onclick="ceEdit(null)">'+ic('add')+' เพิ่ม'+esc(R.title)+'</button>')+'</div>'+
