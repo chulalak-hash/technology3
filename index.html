@@ -8,7 +8,7 @@
 <script>
 /* ========== ตั้งค่า: วางลิงก์ Web app ของ Apps Script (ม.3) ระหว่างเครื่องหมาย ' ' ==========
    ต้องเป็นรูปแบบ https://script.google.com/macros/s/xxxxxxxx/exec  */
-var FLIP_API = 'https://script.google.com/macros/s/AKfycby2uMsED_uPZ-kUs0vTbiTlWThNeaysXLFgHNUkr78iiPiEGDB_OTjI3mCT4iZArbbp/exec';
+var FLIP_API = 'https://script.google.com/a/macros/nongtong.ac.th/s/AKfycbzexPabj_0-3NdI69vh8NjJTxmfYi111rjEF6iud8Be3hJFmHMXMOq6_WvINNq1IAnX/exec';
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -808,6 +808,7 @@ body.q-on{overflow:hidden}body.q-on .fab,body.q-on #ttsBar{display:none!importan
 .game-feat:hover{transform:translateY(-2px)}.game-feat .gf-i{font-size:38px;width:60px;height:60px;border-radius:16px;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
 .game-feat b{font-family:'Kanit';font-size:18px}.game-feat small{display:block;opacity:.9}.game-feat .go{margin-left:auto;background:#facc15;color:#3b2a00;border-radius:99px;padding:6px 14px;font-family:'Kanit';white-space:nowrap}
 @media (max-width:900px){ .q-grid{grid-template-columns:1fr} .q-hero{flex-direction:column;text-align:center} .q-hero-a{margin:0} .q-hero h2{font-size:30px} .qm-sum{grid-template-columns:1fr 1fr} }
+.games .g-more{display:none}.games.all .g-more{display:flex}.games-more{width:100%;justify-content:center;margin-top:10px}
 </style>
 </head>
 <body>
@@ -2310,10 +2311,13 @@ var GAMES=[
 function gamesBox(){
   return '<div><div class="sec-title">'+ic('sports_esports')+'<h3>มุมเกมการศึกษา</h3></div>'+
     '<div class="game-feat" onclick="go(\'quest\')"><div class="gf-i">🏝️</div><div><b>FLIP Quest 3D</b><small>วิ่งผจญภัยเก็บฐานทั้ง 3 เกาะ ตอบคำถาม สะสมแต้มและดาวจากครู</small></div><span class="go">เล่นเลย ▶</span></div>'+
-    '<div class="games">'+GAMES.map(function(g){
-    return '<div class="game-c" onclick="go(\'game/'+g.id+'\')"><div class="gi kwbox" style="'+grad(g.c)+'">'+kawaii(g.art,52,'bob')+'</div><div><b>'+g.t+'</b><div class="small muted">'+g.d+'</div></div>'+ic('play_circle','color:'+g.c[0]+';font-size:32px')+'</div>';
-  }).join('')+'</div></div>';
+    '<div class="games'+(S.gamesAll?' all':'')+'" id="gamesGrid">'+GAMES.map(function(g,i){
+    return '<div class="game-c'+(i>=GAMES_SHOW?' g-more':'')+'" onclick="go(\'game/'+g.id+'\')"><div class="gi kwbox" style="'+grad(g.c)+'">'+kawaii(g.art,52,'bob')+'</div><div><b>'+g.t+'</b><div class="small muted">'+g.d+'</div></div>'+ic('play_circle','color:'+g.c[0]+';font-size:32px')+'</div>';
+  }).join('')+'</div>'+(GAMES.length>GAMES_SHOW?'<button class="btn btn-ghost btn-sm games-more" onclick="gamesToggle(this)">'+ic(S.gamesAll?'expand_less':'expand_more')+(S.gamesAll?' ย่อเกม':' ดูเกมเพิ่มเติม ('+(GAMES.length-GAMES_SHOW)+' เกม)')+'</button>':'')+'</div>';
 }
+var GAMES_SHOW=2; // จำนวนเกมเล็กที่แสดงก่อนกด "ดูเกมเพิ่มเติม"
+function gamesToggle(b){ S.gamesAll=!S.gamesAll; var g=$('#gamesGrid'); if(g) g.classList.toggle('all',S.gamesAll);
+  b.innerHTML=ic(S.gamesAll?'expand_less':'expand_more')+(S.gamesAll?' ย่อเกม':' ดูเกมเพิ่มเติม ('+(GAMES.length-GAMES_SHOW)+' เกม)'); }
 function newsGames(news){
   return '<div class="news-games"><div>'+(newsBoard(news)||'<div class="sec-title">'+ic('campaign')+'<h3>กระดานข่าว</h3></div><div class="card empty">ยังไม่มีข่าวประกาศ</div>')+'</div>'+gamesBox()+'</div>';
 }
