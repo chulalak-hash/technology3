@@ -8,7 +8,10 @@
 <script>
 /* ========== ตั้งค่า: วางลิงก์ Web app ของ Apps Script (ม.3) ระหว่างเครื่องหมาย ' ' ==========
    ต้องเป็นรูปแบบ https://script.google.com/macros/s/xxxxxxxx/exec  */
-var FLIP_API = 'https://script.google.com/a/macros/nongtong.ac.th/s/AKfycbzexPabj_0-3NdI69vh8NjJTxmfYi111rjEF6iud8Be3hJFmHMXMOq6_WvINNq1IAnX/exec';
+var FLIP_API = 'https://script.google.com/a/macros/nongtong.ac.th/s/AKfycby8dIvAinjx2eOAavVPHadKJTap9TWq_6fZqtazSCYGU0DJ5lujuFPWop-2T3EBYAZj/exec';
+/* ========== เกมเล่นทั้งห้อง D&T Survivor: วางลิงก์ Web app ของเกม (ลงท้าย /exec) ระหว่าง ' ' ==========
+   ขึ้นเป็นเกมแรกใน "มุมเกมการศึกษา" · ถ้ายังไม่ใส่ลิงก์ เกมนี้จะซ่อนไว้ */
+var GAME_URL = 'https://script.google.com/macros/s/AKfycbybMvK29oKAQbVX8kvyMiTxBaUqpscU4w2uHrFDJamhPeU_hgBm0K4B5RqSSSU7jV7H/exec';
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -809,6 +812,9 @@ body.q-on{overflow:hidden}body.q-on .fab,body.q-on #ttsBar{display:none!importan
 .game-feat b{font-family:'Kanit';font-size:18px}.game-feat small{display:block;opacity:.9}.game-feat .go{margin-left:auto;background:#facc15;color:#3b2a00;border-radius:99px;padding:6px 14px;font-family:'Kanit';white-space:nowrap}
 @media (max-width:900px){ .q-grid{grid-template-columns:1fr} .q-hero{flex-direction:column;text-align:center} .q-hero-a{margin:0} .q-hero h2{font-size:30px} .qm-sum{grid-template-columns:1fr 1fr} }
 .games .g-more{display:none}.games.all .g-more{display:flex}.games-more{width:100%;justify-content:center;margin-top:10px}
+.gf-surv{background:linear-gradient(135deg,#0b2e4f,#1e6fd8 50%,#2dbfac)}
+.gf-surv .go{background:#facc15;color:#3b2a00}
+.gf-surv .gf-tag{display:inline-block;font-size:11px;background:#facc15;color:#3b2a00;border-radius:99px;padding:0 8px;margin-left:6px;vertical-align:middle;font-family:'Kanit'}
 </style>
 </head>
 <body>
@@ -2310,6 +2316,7 @@ var GAMES=[
 ];
 function gamesBox(){
   return '<div><div class="sec-title">'+ic('sports_esports')+'<h3>มุมเกมการศึกษา</h3></div>'+
+    (survivorOK()?'<div class="game-feat gf-surv" onclick="openSurvivor()"><div class="gf-i">🌌</div><div><b>D&amp;T Survivor</b><span class="gf-tag">เล่นทั้งห้อง</span><small>เกมนำเข้าสู่บทเรียน! เดินไปยืนบนเกาะคำตอบ ตอบถูกรอด ตอบผิดตกน้ำ หลุดโลก ลุ้นขึ้นบัลลังก์ 👑 (ใส่รหัสห้องจากจอครู)</small></div><span class="go">เข้าเกม ▶</span></div>':'')+
     '<div class="game-feat" onclick="go(\'quest\')"><div class="gf-i">🏝️</div><div><b>FLIP Quest 3D</b><small>วิ่งผจญภัยเก็บฐานทั้ง 3 เกาะ ตอบคำถาม สะสมแต้มและดาวจากครู</small></div><span class="go">เล่นเลย ▶</span></div>'+
     '<div class="games'+(S.gamesAll?' all':'')+'" id="gamesGrid">'+GAMES.map(function(g,i){
     return '<div class="game-c'+(i>=GAMES_SHOW?' g-more':'')+'" onclick="go(\'game/'+g.id+'\')"><div class="gi kwbox" style="'+grad(g.c)+'">'+kawaii(g.art,52,'bob')+'</div><div><b>'+g.t+'</b><div class="small muted">'+g.d+'</div></div>'+ic('play_circle','color:'+g.c[0]+';font-size:32px')+'</div>';
@@ -2325,7 +2332,9 @@ function gamePage(title,icon,inner){
   return topbar()+'<div class="page"><div class="crumb"><a onclick="go(\'\')">'+ic('home','font-size:18px')+' หน้าแรก</a>'+ic('chevron_right','font-size:18px')+'<span>มุมเกมการศึกษา</span></div>'+
     '<div class="card panel game-panel"><h3>'+ic(icon)+title+'</h3>'+inner+'</div></div>'+footer();
 }
-function openGame(id){ (({picker:gPicker,circuit:gCircuit,edp:gEdp})[id]||function(){go('');})(); }
+function survivorOK(){ return /^https:\/\/script\.google\.com\/.+\/exec/.test(GAME_URL); }
+function openSurvivor(){ if(!survivorOK()){ toast('ครูยังไม่ได้ใส่ลิงก์เกม D&T Survivor',true); return; } window.open(GAME_URL,'_blank'); }
+function openGame(id){ (({picker:gPicker,circuit:gCircuit,edp:gEdp,survivor:function(){ openSurvivor(); go(''); }})[id]||function(){go('');})(); }
 function sKey(k,v){ try{ if(v===undefined) return JSON.parse(localStorage.getItem(NS+'tflg_'+k)||'null'); localStorage.setItem(NS+'tflg_'+k,JSON.stringify(v)); }catch(e){ return null; } }
 function confetti(){
   var box=document.createElement('div'); box.className='confetti';
@@ -3419,18 +3428,48 @@ function ttsChunks(t,max){
   return out;
 }
 function ttsMark(el){ if(TTS.hl) TTS.hl.classList.remove('tts-hl'); TTS.hl=el||null; if(el){ el.classList.add('tts-hl'); var r=el.getBoundingClientRect(); if(r.top<70||r.bottom>innerHeight-90) el.scrollIntoView({behavior:'smooth',block:'center'}); } }
-function ttsStop(){ TTS.q=[]; TTS.busy=false; TTS.pre={}; if(TTS.ok) speechSynthesis.cancel(); if(TTS.audio){ var a=TTS.audio; TTS.audio=null; a.onerror=null; a.onended=null; a.pause(); } ttsMark(null); ttsBarState(); }
+function ttsStop(){ TTS.q=[]; TTS.busy=false; TTS.run=(TTS.run||0)+1; if(TTS.ok) speechSynthesis.cancel(); if(TTS.audio){ var a=TTS.audio; TTS.audio=null; a.onerror=null; a.onended=null; a.pause(); } ttsMark(null); ttsBarState(); }
+/* ลำดับเสียง: ① เสียงผู้หญิง AI เหมือนคน (Google Chirp 3 HD ผ่าน Apps Script: ttsAudio) ② เสียงในเครื่อง ③ เสียงสำรอง Google Translate */
+TTS.mem={}; TTS.srv=!!(IS_GAS||API_URL);
 /* items = [{text, el}] อ่านต่อกันตามลำดับ */
+/* แก้คำย่อให้อ่านถูก เช่น ม.1 → มอ 1 (ไม่ให้อ่านเป็น "หมู่ 1") */
+var TTS_FIX=[[/ม\.\s?([1-6])(?:\s?\/\s?(\d+))?/g,function(m,a,b){ return ' มอ '+a+(b?' ห้อง '+b:'')+' '; }],[/ป\.\s?([1-6])/g,' ปอ $1 '],
+  [/ม\.\s?ต้น/g,' มอต้น '],[/ม\.\s?ปลาย/g,' มอปลาย '],[/พ\.\s?ศ\./g,'พุทธศักราช '],[/ค\.\s?ศ\./g,'คริสต์ศักราช '],
+  [/ด\.\s?ช\./g,'เด็กชาย'],[/ด\.\s?ญ\./g,'เด็กหญิง'],[/น\.\s?ส\./g,'นางสาว'],[/ร\.\s?ร\./g,'โรงเรียน'],[/ศน\./g,'ศึกษานิเทศก์ ']];
+function ttsFix(t){ t=String(t||''); TTS_FIX.forEach(function(f){ t=t.replace(f[0],f[1]); }); return t.replace(/\s+/g,' ').trim(); }
 function ttsPlay(items){
-  ttsStop();
-  var mx=ttsVoice()?170:95; // เสียงออนไลน์รับข้อความสั้นกว่า
+  ttsStop(); items=items.map(function(it){ return {text:ttsFix(it.text), el:it.el}; });
+  var mx=TTS.srv?400:(ttsVoice()?170:95);
   items.forEach(function(it){ ttsChunks(it.text,mx).forEach(function(c,i){ TTS.q.push({text:c, el:i===0?it.el:null, keep:it.el}); }); });
   TTS.busy=true; ttsBarState(); ttsNext();
+}
+function ttsCloud(text){
+  if(TTS.mem[text]) return TTS.mem[text];
+  var p=api('ttsAudio',text).then(function(r){ var b=(r&&r.b64!==undefined)?r.b64:r; if(!b) throw new Error('empty'); return 'data:audio/mpeg;base64,'+b; });
+  TTS.mem[text]=p; p.catch(function(){ delete TTS.mem[text]; }); return p;
 }
 function ttsNext(){
   var it=TTS.q.shift();
   if(!it){ TTS.busy=false; ttsMark(null); ttsBarState(); return; }
   if(it.keep) ttsMark(it.keep);
+  if(TTS.srv){
+    var run=TTS.run, nx=TTS.q[0]; if(nx) ttsCloud(nx.text).catch(function(){});
+    ttsCloud(it.text).then(function(src){
+      if(run!==TTS.run||!TTS.busy) return;
+      var a=new Audio(src); TTS.audio=a; a.playbackRate=TTS.rate<0.85?0.85:1;
+      a.onended=function(){ if(run===TTS.run&&TTS.busy) ttsNext(); };
+      a.onerror=function(){ ttsFallback(it,run); };
+      var pr=a.play(); if(pr&&pr.catch) pr.catch(function(e){ if(e&&e.name==='NotAllowedError'){ toast('แตะหน้าจอ 1 ครั้ง แล้วกดฟังอีกครั้งนะ',true); ttsStop(); } else ttsFallback(it,run); });
+    }).catch(function(){ ttsFallback(it,run); });
+    return;
+  }
+  ttsLocal(it);
+}
+function ttsFallback(it,run){ if(run!==TTS.run) return; TTS.srv=false; if(!TTS.warned){ TTS.warned=1; toast('ใช้เสียงสำรองชั่วคราว',true); }
+  var rest=[it].concat(TTS.q), mx=ttsVoice()?170:95; TTS.q=[];
+  rest.forEach(function(x){ ttsChunks(x.text,mx).forEach(function(c,i){ TTS.q.push({text:c, el:null, keep:i===0?x.keep:null}); }); });
+  ttsNext(); }
+function ttsLocal(it){
   var v=ttsVoice();
   if(v){
     var u=new SpeechSynthesisUtterance(it.text);
@@ -3441,25 +3480,13 @@ function ttsNext(){
   }
   ttsNet(it.text);
 }
-/* เครื่องที่ไม่มีเสียงไทย (เช่น Chrome บน Windows): ใช้เสียงผู้หญิงภาษาไทยออนไลน์ */
+/* เสียงสำรองออนไลน์ (Google Translate) เมื่อไม่มีทั้งเสียง AI และเสียงไทยในเครื่อง */
 function ttsUrl(t){ return 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&total=1&idx=0&textlen='+t.length+'&q='+encodeURIComponent(t); }
-TTS.pre={};
-function ttsPrefetch(){ var n=TTS.q[0]; if(n && !TTS.pre[n.text] && !TTS.useServer){ var a=new Audio(); a.preload='auto'; a.src=ttsUrl(n.text); TTS.pre[n.text]=a; } }
 function ttsNet(text){
-  var tries=0, a;
-  var done=function(){ if(TTS.audio===a && TTS.busy){ delete TTS.pre[text]; ttsNext(); } };
-  var fromServer=function(){
-    if(!IS_GAS && !API_URL){ done(); return; }
-    api('ttsAudio',text).then(function(b64){ if(TTS.audio!==a||!TTS.busy) return; a.onerror=done; a.src='data:audio/mpeg;base64,'+b64; a.playbackRate=TTS.rate<0.85?0.8:1; a.play().catch(done); })
-      .catch(function(){ if(!TTS.warned){ TTS.warned=1; toast('โหลดเสียงบางประโยคไม่ได้ ตรวจสอบอินเทอร์เน็ต',true); } done(); });
-  };
-  a = (!TTS.useServer && TTS.pre[text]) || new Audio();
-  TTS.audio=a;
-  a.onended=done;
-  a.onerror=function(){ tries++; if(tries===1){ TTS.useServer=true; fromServer(); } else done(); };
-  if(TTS.useServer){ fromServer(); }
-  else { if(!a.src) a.src=ttsUrl(text); a.playbackRate=TTS.rate<0.85?0.8:1; var pr=a.play(); if(pr&&pr.catch) pr.catch(function(e){ if(e&&e.name==='NotAllowedError'){ toast('แตะหน้าจอ 1 ครั้ง แล้วกดฟังอีกครั้งนะ',true); ttsStop(); } else a.onerror(); }); }
-  ttsPrefetch();
+  var run=TTS.run, a=new Audio(); TTS.audio=a;
+  var done=function(){ if(TTS.audio===a && run===TTS.run && TTS.busy) ttsNext(); };
+  a.onended=done; a.onerror=done; a.src=ttsUrl(text.slice(0,190)); a.playbackRate=TTS.rate<0.85?0.8:1;
+  var pr=a.play(); if(pr&&pr.catch) pr.catch(done);
 }
 function ttsSay(text,el){ if(text) ttsPlay([{text:text,el:el}]); }
 /* อ่านทั้งหน้า: หัวข้อ ย่อหน้า รายการ ตัวเลือก ตามลำดับบนหน้า */
